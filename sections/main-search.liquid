@@ -132,7 +132,7 @@ endif
         </div>
       {%- else -%}
       <div id="product-grid" class="grid el_mt_40 collection {{ section.settings.texts_aligment }}" data-id="{{ section.id }}">
-        {%- for item in search.results -%}        
+        {%- for item in search.results -%}
         <div class="col-sp-6 {{ section.settings.grid }}">
           {%- case item.object_type -%}
           {%- when 'product' -%}

@@ -1,1 +1,86 @@
-{"sections":{"cart-items":{"type":"main-cart-items","settings":{"heading_aligment":"heading-left","top_spacing":"medium","width":"default","image_ratio":"auto","show_vendor":true}},"cart-footer":{"type":"main-cart-footer","settings":{"top_spacing":"small","width":"default","show_cart_note":true,"show_checkout_button":true}},"1654078801691cb7ae":{"type":"featured-collection","disabled":true,"settings":{"collection":"","subheading":"SUBHEADING","heading":"Featured collection","heading_aligment":"text-center","button_name":"Show All","top_spacing":"normal","width":"default","grid":"col-md-4 col-one_fifth","desktop_slider":"show_mask","desktop_slider_scroll_one":false,"mobile_grid":"6","swipe_on_mobile":false,"product_limit":5,"image_ratio":"1","image_zoom_internal":false,"show_secondary_image":true,"texts_aligment":"text-center","product_name_size":"body2","show_vendor":true,"show_type":true,"show_price":true,"truncate_product_name":false,"hover_underline":false,"button_type_product":"hide","show_button_quickview":true,"show_badge_on_sale":true,"show_badge_sold_out":true,"show_badge_feature":true,"color_subheading":"rgba(0,0,0,0)","color_heading":"rgba(0,0,0,0)","color_swipe_buttons":"rgba(0,0,0,0)","color_meta":"rgba(0,0,0,0)","color_all_elements":"rgba(0,0,0,0)","color_price":"rgba(0,0,0,0)","color_save_price":"rgba(0,0,0,0)","color_button_quickview":"rgba(0,0,0,0)","color_button_product":"rgba(0,0,0,0)","color_border_1":"rgba(0,0,0,0)","color_border_2":"rgba(0,0,0,0)","background":"hide","color_background":"rgba(0,0,0,0)","gradient":"","background_width":"fullwidth","background_spacing":"normal","remove_bottom_spacing":false}}},"order":["cart-items","cart-footer","1654078801691cb7ae"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "cart-items": {
+      "type": "main-cart-items",
+      "settings": {
+        "heading_aligment": "heading-left",
+        "top_spacing": "medium",
+        "width": "default",
+        "image_ratio": "auto",
+        "show_vendor": true
+      }
+    },
+    "cart-footer": {
+      "type": "main-cart-footer",
+      "settings": {
+        "top_spacing": "small",
+        "width": "default"
+      }
+    },
+    "1654078801691cb7ae": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "collection": "",
+        "subheading": "SUBHEADING",
+        "heading": "Featured collection",
+        "heading_aligment": "text-center",
+        "button_name": "Show All",
+        "top_spacing": "normal",
+        "width": "default",
+        "grid": "col-md-4 col-one_fifth",
+        "desktop_slider": "show_mask",
+        "desktop_slider_scroll_one": false,
+        "mobile_grid": "6",
+        "swipe_on_mobile": false,
+        "product_limit": 5,
+        "image_ratio": "1",
+        "image_zoom_internal": false,
+        "show_secondary_image": true,
+        "texts_aligment": "text-center",
+        "product_name_size": "body2",
+        "show_vendor": true,
+        "show_type": true,
+        "show_price": true,
+        "truncate_product_name": false,
+        "hover_underline": false,
+        "button_type_product": "hide",
+        "show_button_quickview": true,
+        "show_badge_on_sale": true,
+        "show_badge_sold_out": true,
+        "show_badge_feature": true,
+        "color_subheading": "rgba(0,0,0,0)",
+        "color_heading": "rgba(0,0,0,0)",
+        "color_swipe_buttons": "rgba(0,0,0,0)",
+        "color_meta": "rgba(0,0,0,0)",
+        "color_all_elements": "rgba(0,0,0,0)",
+        "color_price": "rgba(0,0,0,0)",
+        "color_save_price": "rgba(0,0,0,0)",
+        "color_button_quickview": "rgba(0,0,0,0)",
+        "color_button_product": "rgba(0,0,0,0)",
+        "color_border_1": "rgba(0,0,0,0)",
+        "color_border_2": "rgba(0,0,0,0)",
+        "background": "hide",
+        "color_background": "rgba(0,0,0,0)",
+        "gradient": "",
+        "background_width": "fullwidth",
+        "background_spacing": "normal",
+        "remove_bottom_spacing": false
+      }
+    }
+  },
+  "order": [
+    "cart-items",
+    "cart-footer",
+    "1654078801691cb7ae"
+  ]
+}

@@ -6,7 +6,7 @@
       <details>
         <summary>
            
-          <div class="menu-drawer__menu-item {{ menu_font_weight }}{% if link.current or link.child_active %} menu-drawer__menu-item--active{% endif %}">
+          <div class="menu-drawer__menu-item h6{% if link.current or link.child_active %} menu-drawer__menu-item--active{% endif %}">
             {%- if desktop_menu_type != 'header-layout-classic' -%}
             {%- render 'get-menu-icon-code', icons:icons, forloop_index:forloop.index -%}
             {%- endif -%}
@@ -82,7 +82,7 @@
     </li>
     {%- else -%}
     <li>
-      <a href="{{ link.url }}" class="menu-drawer__menu-item {{ menu_font_weight }}{% if link.current %} menu-drawer__menu-item--active{% endif %}">
+      <a href="{{ link.url }}" class="menu-drawer__menu-item h6{% if link.current %} menu-drawer__menu-item--active{% endif %}">
         {%- if desktop_menu_type != 'header-layout-classic' -%}
         {%- render 'get-menu-icon-code', icons:icons, forloop_index:forloop.index -%}
         {%- endif -%}

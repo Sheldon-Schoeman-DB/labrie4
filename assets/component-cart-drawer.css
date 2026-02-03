@@ -264,7 +264,7 @@ drawer-inner{
 }
 @media (max-width: 576px){
   .drawer__inner {
-    width: calc(100% - 40px);
+    width: calc(100% - 50px);
     padding: 40px 20px 0;
   }
   .drawer__cart-item__content {
@@ -279,4 +279,10 @@ drawer-inner{
   cart-drawer:not(.is-empty) .drawer__footer > *:last-child{
     padding-bottom: 35px;
   }
+}
+.drawer__inner__links{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
 }

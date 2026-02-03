@@ -1,29 +1,41 @@
 {{ 'component-inputs.css' | asset_url | stylesheet_tag }}
 {{ 'component-cart.css' | asset_url | stylesheet_tag }}
 
-<div class="top-spacing-{{ section.settings.top_spacing }} cart__footer{% if cart == empty %} is-empty{% endif %}" id="main-cart-footer" data-id="{{ section.id }}">
+<div class="top-spacing-{{ section.settings.top_spacing }} cart__footer{% if cart == empty %} is-empty{% endif %} {{ section.settings.heading_aligment_mobile }}" id="main-cart-footer" data-id="{{ section.id }}">
   <div class="{% if section.settings.width != "default" %}{{ section.settings.width }}{% else %}{{ settings.page_width_main }}{% endif %}">
     <div class="grid el_mt_60">
       <div class="col-sp-12 col-6">
-        {%- if section.settings.show_cart_note -%}
+        {%- if settings.show_cart_note -%}
+        <h5 class="mt0 mb20 cart-page__message-heading">{{ "general.cart.heading_message" | t }}</h5>
         <cart-note class="field field--text-area">
           <textarea class="text-area field__input"
                     id="Cart-note"
                     name="note"
+                    form="cart"
                     placeholder="{{ 'sections.cart.note' | t }}"
-                    >{{ cart.note }}</textarea>         
+                    >{{ cart.note }}</textarea>       
           <label class="field__label" for="Cart-note">{{ 'sections.cart.note' | t }}</label>
         </cart-note>
         {%- endif -%}
       </div>
       <div class="col-sp-12 col-6">
-        
         <div class="cart__footer__content js-contents body3">
+
+          {%- if settings.show_add_discount_code -%}
+          <div class="discount-container">
+            <h5 class="mt0 mb20 cart-page__message-heading">{{ "general.cart.heading_discount" | t }}</h5>
+            {%- render "cart-discount", section_id:section.id, zoom:"btn_zoom" -%}
+          </div>
+          {%- endif -%}
+
           <div class="totals">
             <h3 class="mt0 mb0 totals__subtotal">{{ 'sections.cart.subtotal' | t }}</h3>&nbsp;
             <p class="mt0 h3 totals__subtotal-value">{{ cart.total_price | money_with_currency }}</p>
           </div>
 
+          {% if settings.show_installments %}
+            <span class="cart__summary-item cart__installments display-block mt10">{% form 'cart', cart %}{{ form | payment_terms }}{% endform %}</span>
+          {% endif %}
           {%- if cart.cart_level_discount_applications.size > 0 -%}
           <div class="mt10">
             <ul class="discounts unstyle-ul" role="list" aria-label="{{ 'customer.order.discount' | t }}">
@@ -51,7 +63,14 @@
           </div>
         </div>
 
+        {%- liquid
+            assign accel_buttons = false
+            if additional_checkout_buttons and settings.show_accelerated_checkout_buttons
+            assign accel_buttons = true
+            endif
+        -%}
         {%- if settings.terms_and_condition_checkbox -%}
+        {%- if accel_buttons or settings.show_checkout_button -%}
         <terms_and_condition-checkbox>
           <label for="product-terms_and_condition_checkbox-{{ section.id }}" class="checkbox-input body2">
             <input id="product-terms_and_condition_checkbox-{{ section.id }}"
@@ -68,22 +87,23 @@
           </label>
         </terms_and_condition-checkbox>
         {%- endif -%}
+        {%- endif -%}
         
-        {%- if section.settings.show_checkout_button -%}
+        {%- if settings.show_checkout_button -%}
         <div class="cart__footer__content">
           <noscript>
-            <button type="submit" class="btn btn_zoom btn--secondary w-full-sp" form="cart">
+            <button type="submit" class="btn btn_zoom btn--secondary w-full" form="cart">
               <span>{{ 'sections.cart.update' | t }}</span>
             </button>
           </noscript>
-          <button type="submit" id="checkout" class="btn btn_zoom checkout-button-color w-full-sp{% if settings.enable_btn_with_arrow %} btn__animation-arrow{% endif %}" name="checkout" form="cart">
+          <button type="submit" id="checkout" class="btn btn_zoom checkout-button-color w-full{% if settings.enable_btn_with_arrow %} btn__animation-arrow{% endif %}" name="checkout" form="cart">
             <span>{{ 'sections.cart.checkout' | t }}</span>
           </button>
         </div>
-		{%- endif -%}
+		    {%- endif -%}
 
-        {%- if additional_checkout_buttons -%}
-        <div class="cart__dynamic-checkout-buttons additional-checkout-buttons mt30">
+        {%- if additional_checkout_buttons and settings.show_accelerated_checkout_buttons -%}
+        <div class="cart__dynamic-checkout-buttons additional-checkout-buttons additional-checkout-buttons--vertical mt10">
           {{ content_for_additional_checkout_buttons }}
         </div>
         {%- endif -%}
@@ -192,16 +212,20 @@
       "info": "t:sections.general.settings.width.info"
     },
     {
-      "type": "checkbox",
-      "id": "show_cart_note",
-      "default": true,
-      "label": "t:sections.main-cart-footer.settings.show_cart_note.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_checkout_button",
-      "default": true,
-	  "label": "t:sections.main-cart-footer.settings.show_checkout_button.label"
+      "type": "select",
+      "id": "heading_aligment_mobile",
+      "options": [
+        {
+          "value": "text-left-mobile",
+          "label": "t:sections.general.settings.texts_aligment.options__left.label"
+        },
+        {
+          "value": "text-center-mobile",
+          "label": "t:sections.general.settings.texts_aligment.options__center.label"
+        }
+      ],
+      "default": "text-left-mobile",
+      "label": "Headings aligment. Mobile"
     }
   ],
   "blocks": [

@@ -90,34 +90,61 @@ class FacetFiltersForm extends HTMLElement {
 
   static renderFilters(html, event) {
     const parsedHTML = new DOMParser().parseFromString(html, 'text/html');
+    const facetDetailsElementsFromFetch = parsedHTML.querySelectorAll('#FacetFiltersForm .js-filter, #FacetFiltersFormMobile .js-filter');
+    const facetDetailsElementsFromDom = document.querySelectorAll('#FacetFiltersForm .js-filter, #FacetFiltersFormMobile .js-filter');
 
-    const facetDetailsElements =
-      parsedHTML.querySelectorAll('#FacetFiltersForm .js-filter, #FacetFiltersFormMobile .js-filter');
-    const matchesIndex = (element) => { 
-      const jsFilter = event ? event.target.closest('.js-filter') : undefined;
-      return jsFilter ? element.dataset.index === jsFilter.dataset.index : false; 
-    }
-    const facetsToRender = Array.from(facetDetailsElements).filter(element => !matchesIndex(element));
-    const countsToRender = Array.from(facetDetailsElements).find(matchesIndex);
-
-    facetsToRender.forEach((element) => {
-      document.querySelector(`.js-filter[data-index="${element.dataset.index}"]`).innerHTML = element.innerHTML;
+    Array.from(facetDetailsElementsFromDom).forEach((currentElement) => {
+      if (!Array.from(facetDetailsElementsFromFetch).some(({ id }) => currentElement.id === id)) {
+        currentElement.remove();
+      }
     });
+
+    const matchesId = (element) => {
+      const jsFilter = event ? event.target.closest('.js-filter') : undefined;
+      return jsFilter ? element.id === jsFilter.id : false;
+    };
+    const facetsToRender = Array.from(facetDetailsElementsFromFetch).filter((element) => !matchesId(element));
+    const countsToRender = Array.from(facetDetailsElementsFromFetch).find(matchesId);
+
+    facetsToRender.forEach((elementToRender, index) => {
+      const currentElement = document.getElementById(elementToRender.id);
+      if (currentElement) {
+        document.getElementById(elementToRender.id).innerHTML = elementToRender.innerHTML;
+      } else {
+        if (index > 0) {
+          const { className: previousElementClassName, id: previousElementId } = facetsToRender[index - 1];
+          if (elementToRender.className === previousElementClassName) {
+            document.getElementById(previousElementId).after(elementToRender);
+            return;
+          }
+        }
+        if (elementToRender.parentElement) {
+          document.querySelector(`#${elementToRender.parentElement.id} .js-filter`).before(elementToRender);
+        }
+      }
+    });
+
+    document.querySelector('toggle-component#FacetsWrapperDesktop') && document.querySelector('toggle-component#FacetsWrapperDesktop').dispatchEvent(new Event('init', { bubbles: true }));
 
     FacetFiltersForm.renderActiveFacets(parsedHTML);
     FacetFiltersForm.renderAdditionalElements(parsedHTML);
 
     if (countsToRender) {
       const closestJSFilterID = event.target.closest('.js-filter').id;
+
       if (closestJSFilterID) {
         FacetFiltersForm.renderCounts(countsToRender, event.target.closest('.js-filter'));
-        const newElementSelector = document
-          .getElementById(closestJSFilterID)
-          .classList.contains('mobile-facets__details')
-          ? `#${closestJSFilterID} .mobile-facets__close-button`
-          : `#${closestJSFilterID} .facets__summary`;
-        const newElementToActivate = document.querySelector(newElementSelector);
-        if (newElementToActivate) newElementToActivate.focus();
+        FacetFiltersForm.renderCounts(countsToRender, document.getElementById(closestJSFilterID));
+
+        const newFacetDetailsElement = document.getElementById(closestJSFilterID);
+        const newElementSelector = newFacetDetailsElement.classList.contains('mobile-facets__details')
+          ? `.mobile-facets__close-button`
+          : `.facets__summary`;
+        const newElementToActivate = newFacetDetailsElement.querySelector(newElementSelector);
+
+        const isTextInput = event.target.getAttribute('type') === 'text';
+
+        if (newElementToActivate && !isTextInput) newElementToActivate.focus();
       }
     }
   }

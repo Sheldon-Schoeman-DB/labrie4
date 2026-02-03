@@ -1,32 +1,12 @@
-{%- assign has_bulky_item = false -%}
-{%- assign non_bulky_total = 0 -%}
-
-{% for item in cart.items -%}
-  {%- assign is_item_bulky = false -%}
-
-  {% for tag in item.product.tags -%}
-    {% if tag contains 'Bulky' %}
-      {%- assign is_item_bulky = true -%}
-      {%- assign has_bulky_item = true -%}
-    {% endif %}
-  {% endfor %}
-
-  {%- if is_item_bulky == false -%}
-    {%- assign non_bulky_total = non_bulky_total | plus: item.line_price -%}
-  {%- endif -%}
-{%- endfor -%}
-
 {%- assign price_max = settings.free_delivery_price | times:100 -%}
-{%- assign remaining_amount = price_max | minus: non_bulky_total -%}
-
-<div class="free-delivery-bar__toolbar body2" 
-     style="--length:{{ non_bulky_total }}; --max-length:{{ price_max }};">
-  {%- if remaining_amount <= 0 -%}
-    {%- render "icon-check" -%}
-    <span>{{ "general.free_shipping.free_shipping_html" | t }}</span>
+{%- assign price = price_max | minus: cart.total_price -%}
+<div class="free-delivery-bar__toolbar body2" style="--length:{{ cart.total_price }};--max-length:{{ price_max }};">
+  {%- if price < 0 -%}
+  {%- render "icon-check" -%}
+  <span>{{ "general.free_shipping.free_shipping_html" | t }}</span>
   {%- else -%}
-    {%- render "icon-box" -%}
-    {%- assign remaining_amount = remaining_amount | money -%}
-    <span>{{ "general.free_shipping.normal_html" | t:price:remaining_amount }}*</span>
+  {%- render "icon-box" -%}
+  {%- assign price = price | money -%}
+  <span>{{ "general.free_shipping.normal_html" | t:price:price }}</span>
   {%- endif -%}
 </div>

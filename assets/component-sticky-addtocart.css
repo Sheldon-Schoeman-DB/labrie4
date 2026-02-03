@@ -91,6 +91,9 @@
 	bottom: 0;
 	transform: translateY(calc(100% + 30px));
   }
+  .sticky-cart-modal {
+    padding-bottom: 10px;
+  }
   footer.sticky-cart-modal_bottom_padding{
     padding-bottom: 70px;
   }

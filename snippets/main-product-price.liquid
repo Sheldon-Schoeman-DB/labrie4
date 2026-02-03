@@ -29,7 +29,7 @@
   </div>
   {% endif %}
   <div class="price__container">
-    <div class="{%- if compare_at_price != blank and compare_at_price > price -%} price__sale{% endif %} h4">{{ money_price }}</div>
+    <div class="{%- if compare_at_price != blank and compare_at_price > price -%} price__sale{% endif %} h4 price__main__value">{{ money_price }}</div>
     <div class="unit-price body3{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hide{% endif %}">
       <span>{{- product.selected_or_first_available_variant.unit_price | money -}}</span>
       <span aria-hidden="true">/</span>

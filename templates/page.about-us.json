@@ -1,1 +1,442 @@
-{"sections":{"main":{"type":"main-page","disabled":true,"settings":{"top_spacing":"normal","width":"default","show_heading":true,"heading_aligment":"text-center"}},"custom_liquid_V9qVWx":{"type":"custom-liquid","disabled":true,"custom_css":[".header {height: 70vh; width: 100%; border-radius: 20px; background-image: url(\"https:\/\/cdn.shopify.com\/s\/files\/1\/0613\/2835\/9555\/files\/about-desktop.jpg?v=1733320295\"); background-size: cover; background-position: center;}","#header-heading {text-align: center;}","#header-text {text-align: center; width: 70%; margin: 30px auto;}"],"settings":{"custom_liquid":"<div class=\"header-wrapper\">\n<div class=\"header\">\n<\/div>\n<h1 id=\"header-heading\">About Us<\/h1>\n<p id=\"header-text\">We are the place your pets want to be! Our caring and compassionate team consider your pets our pets. We love them, cuddle them, play with them all day every day from sun rise to sun set.<\/p>\n<\/div>","top_spacing":"normal","width":"default"}},"text_CyPGTJ":{"type":"text","disabled":true,"settings":{"subheading":"","heading":"About Us","description":"<p>We are the place your pets want to be! Our caring and compassionate team consider your pets our pets. We love them, cuddle them, play with them all day every day from sun rise to sun set.<\/p>","button_name":"","button_url":"","top_spacing":"normal","width":"default","texts_aligment":"text-center","heading_tag":"h1","description_size":"normal","color_subheading":"rgba(0,0,0,0)","color_heading":"rgba(0,0,0,0)","color_description":"rgba(0,0,0,0)","color_button":"rgba(0,0,0,0)","background":"hide","color_background":"rgba(0,0,0,0)","gradient":"","background_width":"fullwidth","background_spacing":"normal","remove_bottom_spacing":false}},"banners_collage_LT6Nid":{"type":"banners-collage","blocks":{"banner_cYMM8H":{"type":"banner","settings":{"image":"shopify:\/\/shop_images\/about-desktop.jpg","image_overlay_opacity":10,"image_mobile":"shopify:\/\/shop_images\/About_Us_Mobile.png","image_overlay_opacity_mobile":0,"subheading":"","heading":"About Us","description":"We are the place your pets want to be! Our caring and compassionate team consider your pets our pets. We love them, cuddle them, play with them all day every day from sun rise to sun set.","call_to_action":"one_link_banner","button_primary_name":"SHOP PRODUCTS","url":"","button_secondary_name":"","button_secondary_url":"","content_aligment":"align-items-center","background_text_width":38,"texts_aligment":"text-left","texts_aligment_mobile":"text-center-mobile","heading_tag":"h2","heading_tag_mobile":"h2--mobile","description_size":"normal","show_background":false,"background_overlay_opacity":90,"hover_underline":true,"content_aligment_mobile":"align-items-center-m justify-content-center-m","color_subheading":"rgba(0,0,0,0)","color_heading":"#ffffff","color_description":"#ffffff","button_primary_bg":"rgba(0,0,0,0)","button_secondary_bg":"rgba(0,0,0,0)","color_background":"rgba(0,0,0,0)","color_subheading_m":"rgba(0,0,0,0)","color_heading_m":"rgba(0,0,0,0)","color_description_m":"rgba(0,0,0,0)","button_primary_bg_m":"rgba(0,0,0,0)","button_secondary_bg_m":"rgba(0,0,0,0)","color_background_m":"rgba(0,0,0,0)"}},"banner_ekDVJT":{"type":"banner","settings":{"image_overlay_opacity":0,"image_overlay_opacity_mobile":0,"subheading":"","heading":"Kennel Bookings","description":"Safe & comfortable pet boarding in a friendly, loving & relaxing environment.","call_to_action":"one_link_banner","button_primary_name":"BOOK NOW","url":"","button_secondary_name":"Button","button_secondary_url":"","content_aligment":"align-items-center","background_text_width":76,"texts_aligment":"text-left","texts_aligment_mobile":"text-center-mobile","heading_tag":"h2","heading_tag_mobile":"h2--mobile","description_size":"normal","show_background":false,"background_overlay_opacity":90,"hover_underline":false,"content_aligment_mobile":"align-items-center-m justify-content-center-m","color_subheading":"rgba(0,0,0,0)","color_heading":"rgba(0,0,0,0)","color_description":"rgba(0,0,0,0)","button_primary_bg":"rgba(0,0,0,0)","button_secondary_bg":"rgba(0,0,0,0)","color_background":"rgba(0,0,0,0)","color_subheading_m":"rgba(0,0,0,0)","color_heading_m":"rgba(0,0,0,0)","color_description_m":"rgba(0,0,0,0)","button_primary_bg_m":"rgba(0,0,0,0)","button_secondary_bg_m":"rgba(0,0,0,0)","color_background_m":"rgba(0,0,0,0)"}}},"block_order":["banner_cYMM8H","banner_ekDVJT"],"settings":{"subheading":"","heading":"","heading_aligment":"text-left","top_spacing":"normal","width":"default","grid":"preset-4","swappresets":false,"image_ratio":"auto","image_size":"auto","desktop_image_height":440,"hover_type":"image-banner__normal-hover","box_roundness":3,"design_type":"image-banner__default","desktop_navigation":"dots_arrows","dots_desktop_position":"center","mobile_navigation":"dots_arrows","dots_mobile_position":"center","autoplay_enabled":true,"autoplay_time":5,"color_subheading":"rgba(0,0,0,0)","color_heading":"rgba(0,0,0,0)","color_media_bg":"rgba(0,0,0,0)","color_media_bg_hover":"rgba(0,0,0,0)","color_swatches":"rgba(0,0,0,0)","color_swatches_m":"rgba(0,0,0,0)","background":"hide","color_background":"rgba(0,0,0,0)","gradient":"","background_width":"fullwidth","background_spacing":"normal","remove_bottom_spacing":false}},"16540757411b1ccd93":{"type":"image-with-text-bg","blocks":{"1654075741a97777c4-0":{"type":"image","settings":{"content_type":"image","image_ratio":"1.333333","image":"shopify:\/\/shop_images\/Lindy_3.png","video_url":"","description":""}},"1654075741a97777c4-1":{"type":"heading","settings":{"subheading":"","heading":"<span style=\"font-weight: 400;\">Hi Im<\/span> Lindy Riley"}},"1654075741a97777c4-2":{"type":"text","settings":{"text":"<p>Lindy has been involved with animals her entire life. She grew up in a veterinary practice from the time she could walk, whereafter she worked part-time at the practice throughout high school as a receptionist and nurse. She also worked in a pet shop and grooming parlour over weekends. Lindy would later go on to own and run her own pet shop and grooming parlour.<\/p><p>She also has a love for dog showing and started showing in high school. She handled German Shepherds, Jack Russel Terriers, French Poodles and Parson Russel Terries and has proudly produced several Best In Show dogs and countless breed champions. More recently Border Collies stole her heart, first in showing and later in working, leading to her involvement with Border Collie Rescue.<\/p><p>Lindy’s experience with dog training has varied from wilderness search and rescue to obedience training, agility, dog jumping, personal protection, tracking, urban man trailing and explosive and narcotic detection work.<\/p><p><\/p><p><strong>In January 1994 she took over La Brie Kennels and Cattery.<\/strong><\/p>"}}},"block_order":["1654075741a97777c4-0","1654075741a97777c4-1","1654075741a97777c4-2"],"settings":{"url":"","top_spacing":"normal","width":"default","column_reverse":true,"texts_aligment":"text-center","heading_tag":"h2","text_size":"normal","hover_underline":false,"color_subheading":"rgba(0,0,0,0)","color_heading":"rgba(0,0,0,0)","color_text":"rgba(0,0,0,0)","color_button":"rgba(0,0,0,0)","play_background":"rgba(0,0,0,0)","background":"color","color_background":"rgba(0,0,0,0)","gradient":"","background_width":"content_width","background_spacing":"normal","background_bp":70}},"165407638219db233c":{"type":"text-columns-with-images","blocks":{"0bd220a6-c853-4914-9603-3dd18c9fcd60":{"type":"blurb_image","settings":{"show_image":"show","image":"shopify:\/\/shop_images\/Jimmy.jpg","url":"","heading":"Jim <span style=\"font-weight: 400;\">Setjie<\/span>","description":"<p>Jimmy has been with the team since 1997, his love and compassion ranges from his love for our horses to taking care of and pampering our kitties in the cattery. He also takes an active role in keeping La Brie looking at its best while assisting with maintenance and the upkeep of the grounds<\/p>"}},"1c37d03e-42d4-4a8c-8da0-a431227d3744":{"type":"blurb_image","settings":{"show_image":"show","image":"shopify:\/\/shop_images\/Phineas.jpg","url":"","heading":"Phineas <span style=\"font-weight: 400;\">Setjie<\/span>","description":"<p>Phineas has been with the team since 1997 and forms an integral part of our canine team.<\/p>"}},"ae100884-e4c0-490b-89fa-29212a686d8a":{"type":"blurb_image","settings":{"show_image":"show","image":"shopify:\/\/shop_images\/Edward.jpg","url":"","heading":"Edward <span style=\"font-weight: 400;\">Madutung<\/span>","description":"<p>A team member since 2007, Edward takes his duties as grounds keeper very seriously and loves filling in with the kennels and cattery whenever necessary, enjoying a game of fetch or Soccer at every opportunity.<\/p>"}},"blurb_image_HhJM8C":{"type":"blurb_image","settings":{"show_image":"show","image":"shopify:\/\/shop_images\/Raymond.jpg","url":"","heading":"Raymond <span style=\"font-weight: 400;\">Madutung<\/span>","description":"<p>Raymond joined the team in 2011 as assistant groomer and general kennel assistant he has now worked his way up to head groomer and assistant kennel manager. Raymond shows compassion and dedication to the pets in his care, always offering a pat and a cuddle as he goes.<\/p>"}},"blurb_image_MaG8gh":{"type":"blurb_image","settings":{"show_image":"show","image":"shopify:\/\/shop_images\/Meghan.jpg","url":"","heading":"Meghan <span style=\"font-weight: 400;\">Earle<\/span>","description":"<p>Meghan took command of the office in 2013 and is the friendly voice on the other side of the phone. Her compassion and patience is unwavering, Meghan has a number of exotic critters at home and enjoys taking our feathered and scaly visitors under her wing when they visit.<\/p>"}},"blurb_image_NQfrzi":{"type":"blurb_image","settings":{"show_image":"show","image":"shopify:\/\/shop_images\/Shannon.jpg","url":"","heading":"Shannon <span style=\"font-weight: 400;\">Perry<\/span>","description":"<p>Shannon is a keen animal lover and joined our team in January 2021. With a passion for dogs. He has been involved in the breed ring since 2008 as a helper, trainee, and handler for various German Shepherd clubs. Shannon is proud to have trained his own Shepherd’s to BH levels. Some of his other pets include canaries, snakes and rats.<\/p>"}}},"block_order":["0bd220a6-c853-4914-9603-3dd18c9fcd60","1c37d03e-42d4-4a8c-8da0-a431227d3744","ae100884-e4c0-490b-89fa-29212a686d8a","blurb_image_HhJM8C","blurb_image_MaG8gh","blurb_image_NQfrzi"],"settings":{"subheading":"","heading":"Our <span style=\"font-weight: 400;\">Team<\/span>","heading_aligment":"text-center","button_name":"","button_url":"","top_spacing":"normal","width":"default","grid":"col-4","swipe_on_mobile":false,"image_ratio":"auto","image_zoom_internal":false,"texts_aligment":"text-center","heading_tag":"h4","description_size":"normal","hover_underline":false,"color_subheading":"rgba(0,0,0,0)","color_heading":"rgba(0,0,0,0)","color_button":"rgba(0,0,0,0)","color_swipe_buttons":"rgba(0,0,0,0)","color_heading_blurb":"rgba(0,0,0,0)","color_description":"rgba(0,0,0,0)","color_svg":"rgba(0,0,0,0)","background":"hide","color_background":"rgba(0,0,0,0)","gradient":"","background_width":"fullwidth","background_spacing":"normal","remove_bottom_spacing":false}},"image_with_text_6wWby4":{"type":"image-with-text","blocks":{"image_jbNCjC":{"type":"image","settings":{"content_type":"image","image":"shopify:\/\/shop_images\/Square.jpg","image_ratio":"1","video_url":"","description":""}},"heading_RFgr4U":{"type":"heading","settings":{"subheading":"Kennel, Cattery & Doggy Day Care","heading":"A home away from home for your best friend"}},"text_yLDhdc":{"type":"text","settings":{"show_icon":"svg","icon_name":"Dog","text":"<p>We proudly offer four different kennel types, each with access to one of our 16 large grassy exercise areas, perfect for lots of outdoor fun.<\/p>"}},"text_D7U99x":{"type":"text","settings":{"show_icon":"svg","icon_name":"Cat","text":"<p>Our cattery is removed from the dog kennels, thereby giving your favourite feline the peace and quiet they so deserve and appreciate.<\/p>"}},"text_mXHnhP":{"type":"text","settings":{"show_icon":"svg","icon_name":"Rabbit","text":"<p>At La Brie we love all animals and have special dedicated critter environments for all your other furry and non-furry friends.<\/p>"}},"text_JyqJVJ":{"type":"text","settings":{"show_icon":"svg","icon_name":"Hotel","text":"<p>At La Brie we love all animals and have special dedicated critter environments for all your other furry and non-furry friends.<\/p>"}},"button_W6NPt9":{"type":"button","settings":{"button_name":"Book Now"}}},"block_order":["image_jbNCjC","heading_RFgr4U","text_yLDhdc","text_D7U99x","text_mXHnhP","text_JyqJVJ","button_W6NPt9"],"settings":{"url":"","top_spacing":"normal","width":"default","row_reverse":false,"heading_aligment":"text-center","content_aligment":"align-self-start","texts_aligment":"text-left","heading_tag":"h2","text_size":"normal","image_zoom_internal":false,"hover_underline":false,"color_subheading":"rgba(0,0,0,0)","color_heading":"rgba(0,0,0,0)","color_svg":"rgba(0,0,0,0)","color_text":"rgba(0,0,0,0)","color_button":"rgba(0,0,0,0)","background":"hide","color_background":"rgba(0,0,0,0)","gradient":"","background_width":"fullwidth","background_spacing":"normal","remove_bottom_spacing":false}}},"order":["main","custom_liquid_V9qVWx","text_CyPGTJ","banners_collage_LT6Nid","16540757411b1ccd93","165407638219db233c","image_with_text_6wWby4"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "top_spacing": "normal",
+        "width": "default",
+        "show_heading": true,
+        "heading_aligment": "text-center"
+      }
+    },
+    "custom_liquid_V9qVWx": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "custom_css": [
+        ".header {height: 70vh; width: 100%; border-radius: 20px; background-image: url(\"https://cdn.shopify.com/s/files/1/0613/2835/9555/files/about-desktop.jpg?v=1733320295\"); background-size: cover; background-position: center;}",
+        "#header-heading {text-align: center;}",
+        "#header-text {text-align: center; width: 70%; margin: 30px auto;}"
+      ],
+      "settings": {
+        "custom_liquid": "<div class=\"header-wrapper\">\n<div class=\"header\">\n</div>\n<h1 id=\"header-heading\">About Us</h1>\n<p id=\"header-text\">We are the place your pets want to be! Our caring and compassionate team consider your pets our pets. We love them, cuddle them, play with them all day every day from sun rise to sun set.</p>\n</div>",
+        "top_spacing": "normal",
+        "width": "default"
+      }
+    },
+    "text_CyPGTJ": {
+      "type": "text",
+      "disabled": true,
+      "settings": {
+        "subheading": "",
+        "heading": "About Us",
+        "description": "<p>We are the place your pets want to be! Our caring and compassionate team consider your pets our pets. We love them, cuddle them, play with them all day every day from sun rise to sun set.</p>",
+        "button_name": "",
+        "button_url": "",
+        "top_spacing": "normal",
+        "width": "default",
+        "texts_aligment": "text-center",
+        "heading_tag": "h1",
+        "description_size": "normal",
+        "color_subheading": "rgba(0,0,0,0)",
+        "color_heading": "rgba(0,0,0,0)",
+        "color_description": "rgba(0,0,0,0)",
+        "color_button": "rgba(0,0,0,0)",
+        "background": "hide",
+        "color_background": "rgba(0,0,0,0)",
+        "gradient": "",
+        "background_width": "fullwidth",
+        "background_spacing": "normal",
+        "remove_bottom_spacing": false
+      }
+    },
+    "banners_collage_LT6Nid": {
+      "type": "banners-collage",
+      "blocks": {
+        "banner_cYMM8H": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/about-desktop.jpg",
+            "image_overlay_opacity": 10,
+            "image_mobile": "shopify://shop_images/About_Us_Mobile.png",
+            "image_overlay_opacity_mobile": 0,
+            "subheading": "",
+            "heading": "About Us",
+            "description": "We are the place your pets want to be! Our caring and compassionate team consider your pets our pets. We love them, cuddle them, play with them all day every day from sun rise to sun set.",
+            "call_to_action": "one_link_banner",
+            "button_primary_name": "SHOP PRODUCTS",
+            "url": "",
+            "button_secondary_name": "",
+            "button_secondary_url": "",
+            "content_aligment": "align-items-center",
+            "background_text_width": 38,
+            "texts_aligment": "text-left",
+            "texts_aligment_mobile": "text-center-mobile",
+            "heading_tag": "h2",
+            "heading_tag_mobile": "h2--mobile",
+            "description_size": "normal",
+            "show_background": false,
+            "background_overlay_opacity": 90,
+            "hover_underline": true,
+            "content_aligment_mobile": "align-items-center-m justify-content-center-m",
+            "color_subheading": "rgba(0,0,0,0)",
+            "color_heading": "#ffffff",
+            "color_description": "#ffffff",
+            "button_primary_bg": "rgba(0,0,0,0)",
+            "button_secondary_bg": "rgba(0,0,0,0)",
+            "color_background": "rgba(0,0,0,0)",
+            "color_subheading_m": "rgba(0,0,0,0)",
+            "color_heading_m": "rgba(0,0,0,0)",
+            "color_description_m": "rgba(0,0,0,0)",
+            "button_primary_bg_m": "rgba(0,0,0,0)",
+            "button_secondary_bg_m": "rgba(0,0,0,0)",
+            "color_background_m": "rgba(0,0,0,0)"
+          }
+        },
+        "banner_ekDVJT": {
+          "type": "banner",
+          "settings": {
+            "image_overlay_opacity": 0,
+            "image_overlay_opacity_mobile": 0,
+            "subheading": "",
+            "heading": "Kennel Bookings",
+            "description": "Safe & comfortable pet boarding in a friendly, loving & relaxing environment.",
+            "call_to_action": "one_link_banner",
+            "button_primary_name": "BOOK NOW",
+            "url": "",
+            "button_secondary_name": "Button",
+            "button_secondary_url": "",
+            "content_aligment": "align-items-center",
+            "background_text_width": 76,
+            "texts_aligment": "text-left",
+            "texts_aligment_mobile": "text-center-mobile",
+            "heading_tag": "h2",
+            "heading_tag_mobile": "h2--mobile",
+            "description_size": "normal",
+            "show_background": false,
+            "background_overlay_opacity": 90,
+            "hover_underline": false,
+            "content_aligment_mobile": "align-items-center-m justify-content-center-m",
+            "color_subheading": "rgba(0,0,0,0)",
+            "color_heading": "rgba(0,0,0,0)",
+            "color_description": "rgba(0,0,0,0)",
+            "button_primary_bg": "rgba(0,0,0,0)",
+            "button_secondary_bg": "rgba(0,0,0,0)",
+            "color_background": "rgba(0,0,0,0)",
+            "color_subheading_m": "rgba(0,0,0,0)",
+            "color_heading_m": "rgba(0,0,0,0)",
+            "color_description_m": "rgba(0,0,0,0)",
+            "button_primary_bg_m": "rgba(0,0,0,0)",
+            "button_secondary_bg_m": "rgba(0,0,0,0)",
+            "color_background_m": "rgba(0,0,0,0)"
+          }
+        }
+      },
+      "block_order": [
+        "banner_cYMM8H",
+        "banner_ekDVJT"
+      ],
+      "settings": {
+        "subheading": "",
+        "heading": "",
+        "heading_aligment": "text-left",
+        "top_spacing": "normal",
+        "width": "default",
+        "grid": "preset-4",
+        "swappresets": false,
+        "image_ratio": "auto",
+        "image_size": "auto",
+        "desktop_image_height": 440,
+        "hover_type": "image-banner__normal-hover",
+        "box_roundness": 3,
+        "design_type": "image-banner__default",
+        "desktop_navigation": "dots_arrows",
+        "dots_desktop_position": "center",
+        "mobile_navigation": "dots_arrows",
+        "dots_mobile_position": "center",
+        "autoplay_enabled": true,
+        "autoplay_time": 5,
+        "color_subheading": "rgba(0,0,0,0)",
+        "color_heading": "rgba(0,0,0,0)",
+        "color_media_bg": "rgba(0,0,0,0)",
+        "color_media_bg_hover": "rgba(0,0,0,0)",
+        "color_swatches": "rgba(0,0,0,0)",
+        "color_swatches_m": "rgba(0,0,0,0)",
+        "background": "hide",
+        "color_background": "rgba(0,0,0,0)",
+        "gradient": "",
+        "background_width": "fullwidth",
+        "background_spacing": "normal",
+        "remove_bottom_spacing": false
+      }
+    },
+    "16540757411b1ccd93": {
+      "type": "image-with-text-bg",
+      "blocks": {
+        "1654075741a97777c4-0": {
+          "type": "image",
+          "settings": {
+            "content_type": "image",
+            "image_ratio": "1.333333",
+            "image": "shopify://shop_images/Lindy_3.png",
+            "video_url": "",
+            "description": ""
+          }
+        },
+        "1654075741a97777c4-1": {
+          "type": "heading",
+          "settings": {
+            "subheading": "",
+            "heading": "<span style=\"font-weight: 400;\">Hi Im</span> Lindy Riley"
+          }
+        },
+        "1654075741a97777c4-2": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Lindy has been involved with animals her entire life. She grew up in a veterinary practice from the time she could walk, whereafter she worked part-time at the practice throughout high school as a receptionist and nurse. She also worked in a pet shop and grooming parlour over weekends. Lindy would later go on to own and run her own pet shop and grooming parlour.</p><p>She also has a love for dog showing and started showing in high school. She handled German Shepherds, Jack Russel Terriers, French Poodles and Parson Russel Terries and has proudly produced several Best In Show dogs and countless breed champions. More recently Border Collies stole her heart, first in showing and later in working, leading to her involvement with Border Collie Rescue.</p><p>Lindy’s experience with dog training has varied from wilderness search and rescue to obedience training, agility, dog jumping, personal protection, tracking, urban man trailing and explosive and narcotic detection work.</p><p></p><p><strong>In January 1994 she took over La Brie Kennels and Cattery.</strong></p>"
+          }
+        }
+      },
+      "block_order": [
+        "1654075741a97777c4-0",
+        "1654075741a97777c4-1",
+        "1654075741a97777c4-2"
+      ],
+      "settings": {
+        "url": "",
+        "top_spacing": "normal",
+        "width": "default",
+        "column_reverse": true,
+        "texts_aligment": "text-center",
+        "heading_tag": "h2",
+        "text_size": "normal",
+        "hover_underline": false,
+        "color_subheading": "rgba(0,0,0,0)",
+        "color_heading": "rgba(0,0,0,0)",
+        "color_text": "rgba(0,0,0,0)",
+        "color_button": "rgba(0,0,0,0)",
+        "play_background": "rgba(0,0,0,0)",
+        "background": "color",
+        "color_background": "rgba(0,0,0,0)",
+        "gradient": "",
+        "background_width": "content_width",
+        "background_spacing": "normal",
+        "background_bp": 70
+      }
+    },
+    "165407638219db233c": {
+      "type": "text-columns-with-images",
+      "blocks": {
+        "0bd220a6-c853-4914-9603-3dd18c9fcd60": {
+          "type": "blurb_image",
+          "settings": {
+            "show_image": "show",
+            "image": "shopify://shop_images/Jimmy.jpg",
+            "url": "",
+            "heading": "Jim <span style=\"font-weight: 400;\">Setjie</span>",
+            "description": "<p>Jimmy has been with the team since 1997, his love and compassion ranges from his love for our horses to taking care of and pampering our kitties in the cattery. He also takes an active role in keeping La Brie looking at its best while assisting with maintenance and the upkeep of the grounds</p>"
+          }
+        },
+        "1c37d03e-42d4-4a8c-8da0-a431227d3744": {
+          "type": "blurb_image",
+          "settings": {
+            "show_image": "show",
+            "image": "shopify://shop_images/Phineas.jpg",
+            "url": "",
+            "heading": "Phineas <span style=\"font-weight: 400;\">Setjie</span>",
+            "description": "<p>Phineas has been with the team since 1997 and forms an integral part of our canine team.</p>"
+          }
+        },
+        "ae100884-e4c0-490b-89fa-29212a686d8a": {
+          "type": "blurb_image",
+          "settings": {
+            "show_image": "show",
+            "image": "shopify://shop_images/Edward.jpg",
+            "url": "",
+            "heading": "Edward <span style=\"font-weight: 400;\">Madutung</span>",
+            "description": "<p>A team member since 2007, Edward takes his duties as grounds keeper very seriously and loves filling in with the kennels and cattery whenever necessary, enjoying a game of fetch or Soccer at every opportunity.</p>"
+          }
+        },
+        "blurb_image_HhJM8C": {
+          "type": "blurb_image",
+          "settings": {
+            "show_image": "show",
+            "image": "shopify://shop_images/Raymond.jpg",
+            "url": "",
+            "heading": "Raymond <span style=\"font-weight: 400;\">Madutung</span>",
+            "description": "<p>Raymond joined the team in 2011 as assistant groomer and general kennel assistant he has now worked his way up to head groomer and assistant kennel manager. Raymond shows compassion and dedication to the pets in his care, always offering a pat and a cuddle as he goes.</p>"
+          }
+        },
+        "blurb_image_MaG8gh": {
+          "type": "blurb_image",
+          "settings": {
+            "show_image": "show",
+            "image": "shopify://shop_images/Meghan.jpg",
+            "url": "",
+            "heading": "Meghan <span style=\"font-weight: 400;\">Earle</span>",
+            "description": "<p>Meghan took command of the office in 2013 and is the friendly voice on the other side of the phone. Her compassion and patience is unwavering, Meghan has a number of exotic critters at home and enjoys taking our feathered and scaly visitors under her wing when they visit.</p>"
+          }
+        },
+        "blurb_image_NQfrzi": {
+          "type": "blurb_image",
+          "settings": {
+            "show_image": "show",
+            "image": "shopify://shop_images/Shannon.jpg",
+            "url": "",
+            "heading": "Shannon <span style=\"font-weight: 400;\">Perry</span>",
+            "description": "<p>Shannon is a keen animal lover and joined our team in January 2021. With a passion for dogs. He has been involved in the breed ring since 2008 as a helper, trainee, and handler for various German Shepherd clubs. Shannon is proud to have trained his own Shepherd’s to BH levels. Some of his other pets include canaries, snakes and rats.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "0bd220a6-c853-4914-9603-3dd18c9fcd60",
+        "1c37d03e-42d4-4a8c-8da0-a431227d3744",
+        "ae100884-e4c0-490b-89fa-29212a686d8a",
+        "blurb_image_HhJM8C",
+        "blurb_image_MaG8gh",
+        "blurb_image_NQfrzi"
+      ],
+      "settings": {
+        "subheading": "",
+        "heading": "Our <span style=\"font-weight: 400;\">Team</span>",
+        "heading_aligment": "text-center",
+        "button_name": "",
+        "button_url": "",
+        "top_spacing": "normal",
+        "width": "default",
+        "grid": "col-4",
+        "swipe_on_mobile": false,
+        "image_ratio": "auto",
+        "image_zoom_internal": false,
+        "texts_aligment": "text-center",
+        "heading_tag": "h4",
+        "description_size": "normal",
+        "hover_underline": false,
+        "color_subheading": "rgba(0,0,0,0)",
+        "color_heading": "rgba(0,0,0,0)",
+        "color_button": "rgba(0,0,0,0)",
+        "color_swipe_buttons": "rgba(0,0,0,0)",
+        "color_heading_blurb": "rgba(0,0,0,0)",
+        "color_description": "rgba(0,0,0,0)",
+        "color_svg": "rgba(0,0,0,0)",
+        "background": "hide",
+        "color_background": "rgba(0,0,0,0)",
+        "gradient": "",
+        "background_width": "fullwidth",
+        "background_spacing": "normal",
+        "remove_bottom_spacing": false
+      }
+    },
+    "image_with_text_6wWby4": {
+      "type": "image-with-text",
+      "blocks": {
+        "image_jbNCjC": {
+          "type": "image",
+          "settings": {
+            "content_type": "image",
+            "image": "shopify://shop_images/Square.jpg",
+            "image_ratio": "1",
+            "video_url": "",
+            "description": ""
+          }
+        },
+        "heading_RFgr4U": {
+          "type": "heading",
+          "settings": {
+            "subheading": "Kennel, Cattery & Doggy Day Care",
+            "heading": "A home away from home for your best friend"
+          }
+        },
+        "text_yLDhdc": {
+          "type": "text",
+          "settings": {
+            "show_icon": "svg",
+            "icon_name": "Dog",
+            "text": "<p>We proudly offer four different kennel types, each with access to one of our 16 large grassy exercise areas, perfect for lots of outdoor fun.</p>"
+          }
+        },
+        "text_D7U99x": {
+          "type": "text",
+          "settings": {
+            "show_icon": "svg",
+            "icon_name": "Cat",
+            "text": "<p>Our cattery is removed from the dog kennels, thereby giving your favourite feline the peace and quiet they so deserve and appreciate.</p>"
+          }
+        },
+        "text_mXHnhP": {
+          "type": "text",
+          "settings": {
+            "show_icon": "svg",
+            "icon_name": "Rabbit",
+            "text": "<p>At La Brie we love all animals and have special dedicated critter environments for all your other furry and non-furry friends.</p>"
+          }
+        },
+        "text_JyqJVJ": {
+          "type": "text",
+          "settings": {
+            "show_icon": "svg",
+            "icon_name": "Hotel",
+            "text": "<p>At La Brie we love all animals and have special dedicated critter environments for all your other furry and non-furry friends.</p>"
+          }
+        },
+        "button_W6NPt9": {
+          "type": "button",
+          "settings": {
+            "button_name": "Book Now"
+          }
+        }
+      },
+      "block_order": [
+        "image_jbNCjC",
+        "heading_RFgr4U",
+        "text_yLDhdc",
+        "text_D7U99x",
+        "text_mXHnhP",
+        "text_JyqJVJ",
+        "button_W6NPt9"
+      ],
+      "settings": {
+        "url": "",
+        "top_spacing": "normal",
+        "width": "default",
+        "row_reverse": false,
+        "heading_aligment": "text-center",
+        "content_aligment": "align-self-start",
+        "texts_aligment": "text-left",
+        "heading_tag": "h2",
+        "text_size": "normal",
+        "image_zoom_internal": false,
+        "hover_underline": false,
+        "color_subheading": "rgba(0,0,0,0)",
+        "color_heading": "rgba(0,0,0,0)",
+        "color_svg": "rgba(0,0,0,0)",
+        "color_text": "rgba(0,0,0,0)",
+        "color_button": "rgba(0,0,0,0)",
+        "background": "hide",
+        "color_background": "rgba(0,0,0,0)",
+        "gradient": "",
+        "background_width": "fullwidth",
+        "background_spacing": "normal",
+        "remove_bottom_spacing": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_liquid_V9qVWx",
+    "text_CyPGTJ",
+    "banners_collage_LT6Nid",
+    "16540757411b1ccd93",
+    "165407638219db233c",
+    "image_with_text_6wWby4"
+  ]
+}

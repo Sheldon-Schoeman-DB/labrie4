@@ -2,10 +2,10 @@
   {
     "name": "theme_info",
     "theme_name": "Minion",
-    "theme_version": "3.0.0",
+    "theme_version": "4.1.0",
     "theme_author": "SoftAli",
-    "theme_documentation_url": "https:\/\/softalib4.gitbook.io\/minion-shopify-theme\/",
-    "theme_support_url": "https:\/\/softalishopify.ticksy.com\/"
+    "theme_documentation_url": "https://softalib4.gitbook.io/minion-shopify-theme/",
+    "theme_support_url": "https://softalishopify.ticksy.com/"
   },
   {
     "name": "t:settings_schema.colors.name",
@@ -154,6 +154,29 @@
         "label": "t:settings_schema.typography.settings.heading_scale.label",
         "default": 100
       },
+
+      {
+        "type": "header",
+        "content": "t:settings_schema.typography.settings.header__3.content"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_header_font2",
+        "default": "assistant_n4",
+        "label": "t:settings_schema.typography.settings.type_header_font.label",
+        "info": "t:settings_schema.typography.settings.type_header_font.info"
+      },
+      {
+        "type": "range",
+        "id": "heading_scale2",
+        "min": 100,
+        "max": 150,
+        "step": 5,
+        "unit": "%",
+        "label": "t:settings_schema.typography.settings.heading_scale.label",
+        "default": 100
+      },
+
       {
         "type": "header",
         "content": "t:settings_schema.typography.settings.header__2.content"
@@ -201,6 +224,12 @@
         "id": "enable_breadcrumb",
         "default": true,
         "label": "t:settings_schema.styles.settings.enable_breadcrumb.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "customer_account_legacy",
+        "label": "t:settings_schema.styles.settings.customer_account_legacy.label",
+        "default": false
       },
       {
         "type": "checkbox",
@@ -283,7 +312,7 @@
         "id": "enable_btn_with_arrow",
         "default": true,
         "label": "t:settings_schema.styles.settings.enable_btn_with_arrow.label",
-        "info": "t:settings_schema.styles.settings.enable_btn_with_arrow.info"
+        "info": "t:settings_schema.styles.settings.enable_btn_with_arrow.info",
       }
     ]
   },
@@ -486,6 +515,16 @@
         "default": false,
         "label": "t:settings_schema.product_card.settings.product_card_align_buttons.label",
         "info": "t:settings_schema.product_card.settings.product_card_align_buttons.info"
+      },
+      {
+        "type": "range",
+        "id": "price_size",
+        "min": 16,
+        "max": 24,
+        "step": 1,
+        "label": "t:settings_schema.product_card.settings.price_size.label",
+        "default": 16,
+        "unit": "px"
       }
     ]
   },
@@ -537,6 +576,45 @@
         "label": "t:settings_schema.cart.settings.cart_type.label"
       },
       {
+        "type": "checkbox",
+        "id": "show_cart_note",
+        "label": "t:settings_schema.cart.settings.show_cart_note.label",
+        "default": false
+      },
+      {
+        "visible_if": "{{ settings.show_checkout_button == true or settings.show_accelerated_checkout_buttons == true }}",
+        "type": "checkbox",
+        "id": "terms_and_condition_checkbox",
+        "default": false,
+        "label": "t:settings_schema.cart.settings.terms_and_condition_checkbox.label",
+        "info": "t:settings_schema.cart.settings.terms_and_condition_checkbox.info"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_add_discount_code",
+        "label": "t:settings_schema.cart.settings.discount_code",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_installments",
+        "default": false,
+        "label": "t:settings_schema.cart.settings.installments"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_checkout_button",
+        "default": true,
+        "label": "t:settings_schema.cart.settings.checkout_button"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_accelerated_checkout_buttons",
+        "label": "t:settings_schema.cart.settings.accelerated_checkout_button",
+        "info": "t:settings_schema.cart.settings.accelerated_checkout_button_info",
+        "default": true
+      },
+      {
         "type": "header",
         "content": "t:settings_schema.cart.settings.cart_drawer.header"
       },
@@ -544,12 +622,6 @@
         "type": "checkbox",
         "id": "show_vendor",
         "label": "t:settings_schema.cart.settings.show_vendor.label",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "show_cart_note",
-        "label": "t:settings_schema.cart.settings.show_cart_note.label",
         "default": false
       },
       {
@@ -588,13 +660,6 @@
       {
         "type": "header",
         "content": "t:settings_schema.cart.settings.header__cart_page.content"
-      },
-      {
-        "type": "checkbox",
-        "id": "terms_and_condition_checkbox",
-        "default": false,
-        "label": "t:settings_schema.cart.settings.terms_and_condition_checkbox.label",
-        "info": "t:settings_schema.cart.settings.terms_and_condition_checkbox.info"
       },
       {
         "type": "url",
@@ -671,7 +736,7 @@
       {
         "type": "header",
         "content": "t:settings_schema.social-media.settings.header.content",
-        "info": "Paste the account link. The icon will be selected automatically. Check the list of supported social networks [here](https:\/\/softalib4.gitbook.io\/minion-shopify-theme\/theme-settings#social-media)."
+        "info": "Paste the account link. The icon will be selected automatically. Check the list of supported social networks [here](https://softalib4.gitbook.io/minion-shopify-theme/theme-settings#social-media)."
       },
       {
         "type": "text",

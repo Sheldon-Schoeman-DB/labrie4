@@ -1,0 +1,40 @@
+{%- comment -%}
+  Custom bulky item shipping surcharge notice + free delivery fallback.
+  Expects: product, current_variant
+{%- endcomment -%}
+
+{% assign bulky_product = false %}
+{% for tag in product.tags %}
+  {% if tag contains 'Bulky' %}
+    {% assign bulky_product = true %}
+  {% endif %}
+{% endfor %}
+
+{% if bulky_product %}
+  <div class="bulky-container">
+    <div class="backorder-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" focusable="false" aria-hidden="true">
+        <path stroke="red" stroke-linecap="round" d="M7 5.6v2.1"></path>
+        <circle cx="7" cy="9.8" r="0.2" fill="red"></circle>
+        <path stroke="red" stroke-linecap="round" stroke-linejoin="round" d="M7.002 9.798h-.005v.005h.005z"></path>
+        <path stroke="red" fill="none" d="M6.585 2.177a.47.47 0 0 1 .83 0l4.816 9.032a.47.47 0 0 1-.414.69H2.183a.47.47 0 0 1-.414-.69z"></path>
+      </svg>
+    </div>
+    <div class="bulky-column">
+      <span class="statusBackorder" id="bulky-text-big"><b>Large item/s in cart</b></span>
+      <p style="margin-top: 0;" id="bulky-text-big">A fixed delivery charge of <b>R360</b> will be applied to this order due to a large/bulky item.</p>
+    </div>
+  </div>
+  <div>
+    <span id="bulky-text">Please Note* Free Shipping does not apply to this product</span>
+  </div>
+{% elsif settings.show_free_delivery and current_variant.available %}
+  <div id="product-page-free-delivery" class="free-delivery-bar">
+    {%- render "free-delivery-bar" -%}
+  </div>
+{% endif %}
+
+<!-- SHIPPING LIMIT -->
+<div style="margin-top: 10px;">
+  {% render 'shipping-limit-banner' %}
+</div>

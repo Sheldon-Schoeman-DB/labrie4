@@ -24,7 +24,7 @@
         <a href="{{ routes.cart_url }}" class="btn btn--secondary btn_zoom w-full{% if settings.enable_btn_with_arrow %} btn__animation-arrow{% endif %}">
           <span id="cart-notification-button"></span>
         </a>
-        {%- if settings.terms_and_condition_checkbox -%}
+        {%- if settings.terms_and_condition_checkbox and settings.show_checkout_button -%}
         <terms_and_condition-checkbox>
           <label for="cart-notification-terms_and_condition_checkbox" class="checkbox-input body2">
             <input id="cart-notification-terms_and_condition_checkbox"
@@ -41,11 +41,13 @@
           </label>
         </terms_and_condition-checkbox>
         {%- endif -%}
+        {%- if settings.show_checkout_button -%}
         <form action="{{ routes.cart_url }}" method="post" id="cart-notification-form">
           <button class="btn btn_zoom checkout-button-color w-full{% if settings.enable_btn_with_arrow %} btn__animation-arrow{% endif %}" name="checkout">
             <span>{{ 'sections.cart.checkout' | t }}</span>
           </button>
         </form>
+        {%- endif -%}
         <button type="button" class="link btn-medium btn-medium--icon color-accent-to-base cart-notification__links__continue">
           {% render 'icon-arrow-left' %}
           <span>{{ 'general.continue_shopping' | t }}</span>

@@ -312,7 +312,7 @@ class MenuDrawer extends HTMLElement {
     openDetailsElement === this.mainDetailsToggle ? this.closeMenuDrawer(event, this.mainDetailsToggle.querySelector('summary')) : this.closeSubmenu(openDetailsElement);
   }
 
-  onSummaryClick(event) {   
+  onSummaryClick(event) {
     const summaryElement = event.currentTarget;
     const detailsElement = summaryElement.closest('details');
     const parentMenuElement = detailsElement.closest('.has-submenu');
@@ -325,8 +325,8 @@ class MenuDrawer extends HTMLElement {
     }
 
     if (detailsElement === this.mainDetailsToggle) {
+      if (isOpen) event.preventDefault();
       setTimeout(() => {
-        if (isOpen) event.preventDefault();
         isOpen ? this.closeMenuDrawer(event, summaryElement) : this.openMenuDrawer(summaryElement);
       }, 100);
     } else {
@@ -1236,7 +1236,7 @@ class VariantSelects extends HTMLElement {
       const availableOptionInputsValue = selectedOptionOneVariants
         .filter((variant) => variant.available && variant[`option${index}`] === previousOptionSelected)
         .map((variantOption) => variantOption[`option${index + 1}`]);
-      if (typeof this.setInputAvailability === this.setInputAvailability){
+      if (typeof this.setInputAvailability === 'function'){
         this.setInputAvailability(optionInputs, availableOptionInputsValue);
       }
     });
@@ -1309,51 +1309,61 @@ customElements.define('fullscreen-object', fullscreenObject);
 class toggleAnimation extends HTMLElement {
   constructor() {
     super();
-    
     if(this.classList.contains('admin-panel--no-js')) return;
+    
+    this.init();
+    this.addEventListener("init", this.init.bind(this), false);
 
+    this.boxes = this.querySelectorAll('summary');
+    if(!this.boxes.length) return;
+    window.addEventListener("resize", this.resizeHandler.bind(this), false);
+  }
+  init(){
     this.accordion = 'chm-toggle--accordion',
 	this.toggleClass = '.chm-toggle',
 	this.toggleContent = '.chm-toggle__content';
     this.boxes = this.querySelectorAll('summary');
-
     if(!this.boxes.length) return;
     this.bindEvents();
     this.resizeHandler();
-    window.addEventListener("resize", this.resizeHandler.bind(this), false);
   }
   bindEvents(){
     const _this = this;
     this.boxes.forEach(box => {
-      box.addEventListener('click', event => {
-        event.preventDefault();
-        var details = event.target.closest(_this.toggleClass),
-            content = details.querySelector(_this.toggleContent),
-            childs = _this.querySelectorAll('[open]');
-        if(details.hasAttribute('open')){
-          details.classList.remove('toggle-opening');
-          if(!_this.classList.contains(_this.accordion)){
-            setTimeout(function(){
-              details.removeAttribute('open');
-            }, 300);
-            return false;
-          }
-        }
-        else{
-          details.setAttribute('open', '');
-          setTimeout(function(){
-            _this.resizeHandler();
-            details.classList.add('toggle-opening');
-          }, 0);
-        }
-        if(childs.lenght <= 0 || !_this.classList.contains(_this.accordion)) return false;
-        childs.forEach(child => {
-          child.classList.remove('toggle-opening');
-          setTimeout(function(){
-            child.removeAttribute('open');
-          }, 300);
-        });
-      });
+      if(!box.classList.contains('hasevents')){
+        box.addEventListener('click', this.clickEvent.bind(this), true);
+        box.classList.add('hasevents');
+      }
+    });
+  }
+  clickEvent(event){
+    event.preventDefault();
+    var _this = this;
+    var details = event.target.closest(_this.toggleClass),
+        content = details.querySelector(_this.toggleContent),
+        childs = _this.querySelectorAll('[open]');
+    if(details.hasAttribute('open')){
+      details.classList.remove('toggle-opening');
+      if(!_this.classList.contains(_this.accordion)){
+        setTimeout(function(){
+          details.removeAttribute('open');
+        }, 300);
+        return false;
+      }
+    }
+    else{
+      details.setAttribute('open', '');
+      setTimeout(function(){
+        _this.resizeHandler();
+        details.classList.add('toggle-opening');
+      }, 0);
+    }
+    if(childs.lenght <= 0 || !_this.classList.contains(_this.accordion)) return false;
+    childs.forEach(child => {
+      child.classList.remove('toggle-opening');
+      setTimeout(function(){
+        child.removeAttribute('open');
+      }, 300);
     });
   }
   resizeHandler(){
@@ -1591,9 +1601,9 @@ class bigSliderHandler extends HTMLElement {
   constructor() {
     super();
 	
-	this.ctrlLeft = this.querySelector('.ctrl .ctrl__button:first-of-type');
-	this.ctrlRight = this.querySelector('.ctrl .ctrl__button:last-of-type');
-	this.mouse_position_on_click = 0;
+    this.ctrlLeft = this.querySelector('.ctrl .ctrl__button:first-of-type');
+    this.ctrlRight = this.querySelector('.ctrl .ctrl__button:last-of-type');
+    this.mouse_position_on_click = 0;
     this.new_slide = false;
     this.slider = false;
     this.change_timer = false;
@@ -1603,38 +1613,51 @@ class bigSliderHandler extends HTMLElement {
 
     this.resizeHandler();
     setTimeout(this.resizeHandler.bind(this), 500);
-	this.ctrlLeft.addEventListener('click', this.sliderToLeft.bind(this));
-	this.ctrlRight.addEventListener('click', this.sliderToRight.bind(this));
+    this.ctrlLeft.addEventListener('click', this.sliderToLeft.bind(this));
+    this.ctrlRight.addEventListener('click', this.sliderToRight.bind(this));
 	
-	this.addEventListener('touchstart', this.touchstartHandler.bind(this));
-	this.addEventListener('touchend', this.touchendHandler.bind(this));
-	this.addEventListener('mousedown', this.mousedownHandler.bind(this));
-	this.addEventListener('click', this.mouseupHandler.bind(this));
+    this.addEventListener('touchstart', this.touchstartHandler.bind(this));
+    this.addEventListener('touchend', this.touchendHandler.bind(this));
+    this.addEventListener('mousedown', this.mousedownHandler.bind(this));
+    this.addEventListener('click', this.mouseupHandler.bind(this));
     window.addEventListener("resize", this.resizeHandler.bind(this), false);
     
-	this.querySelectorAll(".big-slider__dots__item").forEach((item) => {
-	  item.addEventListener('click', this.dotsClick.bind(this));
-	})
+    this.querySelectorAll(".big-slider__dots__item").forEach((item) => {
+      item.addEventListener('click', this.dotsClick.bind(this));
+    })
 
-	this.querySelectorAll(".video-ctrl__play").forEach((item) => {
-	  item.addEventListener('click', this.videoButtonHandler.bind(this));
-	})
+    this.querySelectorAll(".video-ctrl__play").forEach((item) => {
+      item.addEventListener('click', this.videoButtonHandler.bind(this));
+    })
 
     var _this = this;
-	this.querySelectorAll("video").forEach((item) => {
+	  this.querySelectorAll("video").forEach((item) => {
       item.addEventListener('play', (event) => {
         var duration = Math.max(this.slider_time,Math.round((Number(event.target.duration) - Number(event.target.currentTime))*1000));
         clearTimeout(_this.slider);
+        var duration = Number.isNaN(duration) ? this.slider_time : duration;
+        _this.slider = setTimeout(_this.sliderToRight.bind(_this),duration); 
+      });
+	  })
+    this.querySelectorAll("video-youtube-js").forEach((item) => {
+      item.addEventListener('youtubeOnPlayerStateChange', (event) => {
+        if(event.detail.state == 0){
+          _this.sliderToRight();
+        }
+        if(event.detail.state != 1){
+          return;
+        }
+        var duration = Math.round((event.detail.getDuration-event.detail.getCurrentTime)*1000);
+        clearTimeout(_this.slider);
         _this.slider = setTimeout(_this.sliderToRight.bind(_this),duration);
       });
-	})
-
-	setTimeout(this.deleteImagesLazy.bind(this),1000);
+	  })
+	  setTimeout(this.deleteImagesLazy.bind(this),1000);
     this.classList.add('big-slider-initialized');
     this.slider_time && this.startAutoplay();
     this.slider_time && document.addEventListener('scroll', this.documentScrollHandler.bind(this));
     this.scroll_down = true;
-	this.video_autoplay && setTimeout(this.checkVideoSlide.bind(this),1000);
+	  this.video_autoplay && setTimeout(this.checkVideoSlide.bind(this),1000);
     this.deletePlayForExcludedBrowsers();
 
     if(!this.querySelectorAll('[data-type="youtube"]').length) return;
@@ -1725,11 +1748,15 @@ class bigSliderHandler extends HTMLElement {
     var index = Number(event.target.getAttribute("data-index"));
     this.querySelector(`.big-slider__items ${this.getItemName()}.active`).classList.remove('active');
     this.querySelectorAll(`.big-slider__items ${this.getItemName()}`)[index].classList.add('active');
-	var videoPlayer = this.querySelector('.video-active');
-	videoPlayer && videoPlayer.querySelector('.video-active').dispatchEvent(new Event('click'));
+  	var videoPlayer = this.querySelector('.video-active');
+	  if(videoPlayer){
+      videoPlayer.querySelector('.video-active')&&videoPlayer.querySelector('.video-active').dispatchEvent(new Event('click'));
+    }
     this.slider_time && this.startAutoplay();
-	this.videoHandler();
+	  this.videoHandler();
     this.resizeHandler();
+
+    this.bannerVideoHandler();
   }
   sliderToLeft(){
     this.new_slide = true;
@@ -1746,16 +1773,20 @@ class bigSliderHandler extends HTMLElement {
         slider_child.previousSibling.classList.add('active');
       })
     }
-	var videoPlayer = this.querySelector('.video-active');
-	videoPlayer && videoPlayer.querySelector('.video-active').dispatchEvent(new Event('click'));
+	  var videoPlayer = this.querySelector('.video-active');
+	  if(videoPlayer){
+      videoPlayer.querySelector('.video-active')&&videoPlayer.querySelector('.video-active').dispatchEvent(new Event('click'));
+    }
     this.slider_time && this.startAutoplay();
     this.videoHandler();
     this.resizeHandler();
+    
+    this.bannerVideoHandler();
   }
   sliderToRight(){
     this.new_slide = true;
     this.startChangeDelay();
-	var active_slide = false;
+	  var active_slide = false;
     if (!this.querySelector(`.big-slider__items ${this.getItemName()}.active`).nextSibling) {
       this.querySelectorAll(".for-buttons--js").forEach((item) => {
         item.querySelector(`${this.getItemName()}.active`).classList.remove('active');
@@ -1768,28 +1799,54 @@ class bigSliderHandler extends HTMLElement {
         slider_child.nextSibling.classList.add('active');
       })
     }
-	var videoPlayer = this.querySelector('.video-active');
-	videoPlayer && videoPlayer.querySelector('.video-active').dispatchEvent(new Event('click'));
+
+    this.bannerVideoHandler();
+    
+	  var videoPlayer = this.querySelector('.video-active');
+	  if(videoPlayer){
+      videoPlayer.querySelector('.video-active')&&videoPlayer.querySelector('.video-active').dispatchEvent(new Event('click'));
+    }
     this.slider_time && this.startAutoplay();
-	this.videoHandler();
+	  this.videoHandler();
     this.resizeHandler();
+
+    this.bannerVideoHandler();
+  }
+  bannerVideoHandler(){
+    this.querySelectorAll(".for-buttons__item--js").forEach((item) => {
+      var video_item = item.querySelector('video-js');
+      if(item.classList.contains('active') && video_item){
+        video_item.dispatchEvent(new CustomEvent('playVideo'));
+      }
+      else if(video_item){
+        video_item.dispatchEvent(new CustomEvent('stopVideo'));
+      }
+
+      video_item = item.querySelector('video-youtube-js');
+      if(item.classList.contains('active') && video_item){
+        video_item.dispatchEvent(new CustomEvent('playVideo'));
+      }
+      else if(video_item){
+        video_item.dispatchEvent(new CustomEvent('stopVideo'));
+      }
+    });
   }
   videoHandler(){
     this.deletePlayForExcludedBrowsers();
     this.video_autoplay && this.checkVideoSlide();
   }
   checkVideoSlide(active_slide){
-	var video_button = this.querySelector('.slideshow.active .video-ctrl__play');
-	if(!video_button) return;
-	video_button.dispatchEvent(new Event('click'));
+    var video_button = this.querySelector('.slideshow.active .video-ctrl__play');
+    if(!video_button) return;
+    video_button.dispatchEvent(new Event('click'));
   }
   deletePlayForExcludedBrowsers(){
     if(!this.excludedBrowsers()) return;
-	var video_button = this.querySelector('.slideshow.active .video-ctrl__play');
+	  var video_button = this.querySelector('.slideshow.active .video-ctrl__play');
     video_button.remove();
   }
   touchstartHandler(event){
-	this.mouse_position_on_click = event.touches[0].clientX;
+	  this.mouse_position_on_click = event.touches[0].clientX;
   }
   touchendHandler(event){
     var delta = 50;
@@ -1801,7 +1858,7 @@ class bigSliderHandler extends HTMLElement {
     }
   }
   mousedownHandler(event){
-	this.mouse_position_on_click = event.screenX;
+	  this.mouse_position_on_click = event.screenX;
   }
   mouseupHandler(event){
     var delta = 50;
@@ -1856,6 +1913,7 @@ class bigSliderHandler extends HTMLElement {
   playPauseVideo(target, control){   
 	var item, slideType, player, video;
 	item = target.closest(".slideshow").querySelector(".video-container");
+  if(!item) return;
 	slideType = item.getAttribute('data-type');
 	player = item.querySelector("iframe");
     if (slideType === "youtube") {
@@ -1922,7 +1980,7 @@ class bigSliderHandler extends HTMLElement {
             video.currentTime = 0;
             this.new_slide = false;
           }
-          playVideo(target, video, this.excludedBrowsers());
+          playVideoSlider(target, video, this.excludedBrowsers());
         }
         else{
           video.pause();
@@ -1948,7 +2006,7 @@ class bigSliderHandler extends HTMLElement {
 }
 customElements.define('big-slider', bigSliderHandler);
 
-async function playVideo(target, videoElem, excluded_browsers) {
+async function playVideoSlider(target, videoElem, excluded_browsers) {
   if(excluded_browsers) return false;
   try {
     await videoElem.play();
@@ -2259,3 +2317,271 @@ if(isIOS){
     item.removeAttribute('loading');
   });
 }
+
+class VideoJs extends HTMLElement {
+  constructor() {
+    super();
+    this.video = this.querySelector('video');
+    this.muted = this.getAttribute("data-muted") == "true" ? true : false;
+    this.initIntersectionObserver();
+    if(this.getAttribute("data-buttons") == "true") {
+      this.closest('.section-media-buttons-parent').querySelectorAll('.section__video-media__ctrl--js').forEach((item) => {
+        item.addEventListener("click", this.clickHandler.bind(this));
+      });
+      
+      window.addEventListener(('stopPlayVideo'), (event) => {
+        this.closest('.section-media-buttons-parent').querySelectorAll('.section__video-media__ctrl--js').forEach((item) => {
+          item.classList.remove("video-active");
+        });
+        this.video.pause();
+      });
+    }
+    this.addEventListener('playVideo', this.playVideo.bind(this));
+    this.addEventListener('stopVideo', this.stopVideo.bind(this));
+    this.video.addEventListener('play', this.playHandler.bind(this));
+    var video_on_hover = this.closest('.video_on_hover');
+    video_on_hover&&video_on_hover.addEventListener('mouseover', this.playVideo.bind(this));
+    video_on_hover&&video_on_hover.addEventListener('mouseout', this.stopVideo.bind(this));
+  }
+  initIntersectionObserver() {
+    const options = {
+      root: null,
+      rootMargin: '20px',
+      threshold: 0.1
+    };
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if(!this.video.classList.contains('played') && this.getAttribute("data-video-autoplay") == "true") {
+            this.video.play();
+            this.video.classList.add('played');
+            this.classList.add('initialized');
+          }
+        } else {
+          if(this.video.classList.contains('played') || this.getAttribute("data-video-autoplay") == "false") {
+            this.video.classList.remove('played');
+            this.video.pause();
+            this.getAttribute("data-video-autoplay") == "false"&&this.stopVideo();
+          }
+        }
+      });
+    }, options);
+    
+    this.observer.observe(this.video);
+  }
+  playHandler(e) {
+    this.closest('.section-media-buttons-parent').querySelectorAll('.section__video-media__ctrl--js').forEach((item) => {
+      item.classList.add("video-active");
+    });
+  }
+  playVideo(e) {
+    playVideo(this.video);
+    this.classList.add('initialized');
+  }
+  stopVideo(e) {
+    this.closest('.section-media-buttons-parent').querySelectorAll('.section__video-media__ctrl--js').forEach((item) => {
+      item.classList.remove("video-active");
+    });
+    this.video.pause();
+  }
+  clickHandler(e) {
+    console.dir(e)
+    e.preventDefault();
+    if(e.target.classList.contains("video-active")) {
+      this.closest('.section-media-buttons-parent').querySelectorAll('.section__video-media__ctrl--js').forEach((item) => {
+        item.classList.remove("video-active");
+      });
+      this.video.pause();
+    }
+    else {
+      window.dispatchEvent(new CustomEvent('stopPlayVideo'));
+      this.closest('.section-media-buttons-parent').querySelectorAll('.section__video-media__ctrl--js').forEach((item) => {
+        item.classList.add("video-active");
+      });
+      this.video.play();
+      this.classList.add('initialized');
+    }    
+  }
+  disconnectedCallback() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
+}
+customElements.define('video-js', VideoJs);
+
+async function playVideo(videoElement) {
+  try {
+    await videoElement.play();
+  } catch (err) {
+    console.log('Playback error:', err);
+  }
+}
+
+class VideoYoutubeJs extends HTMLElement {
+  constructor() {
+    super();
+    this.addEventListener("youtubeOnPlayerReady", this.youtubeOnPlayerReady.bind(this));
+    this.addEventListener("youtubeOnPlayerStateChange", this.onPlayerStateChange.bind(this));
+
+    if(this.getAttribute("data-buttons") == "true"){
+      this.closest('.section-media-buttons-parent').querySelectorAll('.section__video-media__ctrl--js').forEach((item) => {
+        item.addEventListener("click", this.clickHandler.bind(this));
+      });
+      this.button_action = false;
+      window.addEventListener(('stopPlayVideo'), (event) => {
+        this.postMessageToPlayer(this.player, {
+          "event": "command",
+          "func": "pauseVideo"
+        });
+      });
+    }
+    this.addEventListener('playVideo', this.playVideo.bind(this));
+    this.addEventListener('stopVideo', this.stopVideo.bind(this));
+  }
+  playVideo(e){
+    this.postMessageToPlayer(this.player, {
+      "event": "command",
+      "func": "playVideo"
+    });
+  }
+  stopVideo(e){
+    this.postMessageToPlayer(this.player, {
+      "event": "command",
+      "func": "pauseVideo"
+    });
+  }
+  clickHandler(e){
+    e.preventDefault();
+    if(this.button_action) return false;
+    this.button_action = true;
+    if(e.target.classList.contains("video-active")){
+      this.postMessageToPlayer(this.player, {
+        "event": "command",
+        "func": "pauseVideo"
+      });
+    }
+    else{
+      window.dispatchEvent(new CustomEvent('stopPlayVideo'));
+      this.postMessageToPlayer(this.player, {
+        "event": "command",
+        "func": "playVideo"
+      });
+    }
+  }
+  youtubeOnPlayerReady(e){
+    this.player = this.querySelector("iframe");
+    if(this.getAttribute("data-video-autoplay") == "true"){
+      window.addEventListener('scroll', this.scrollHandler.bind(this));
+      this.scrollHandler();
+    }
+  }
+  onPlayerStateChange(e){
+    this.classList.add('initialized');
+    e.detail.state == 0&&this.player.classList.remove('played');
+    e.detail.state == 0&&this.scrollHandler();
+    if(this.getAttribute("data-video-autoplay") == "false"){
+      if(e.detail.state == 1){//play
+        this.closest('.section-media-buttons-parent').querySelectorAll('.section__video-media__ctrl--js').forEach((item) => {
+          item.classList.add("video-active");
+        });
+      }
+      if(e.detail.state == 2){//pause
+        this.closest('.section-media-buttons-parent').querySelectorAll('.section__video-media__ctrl--js').forEach((item) => {
+          item.classList.remove("video-active");
+        });
+      }
+      this.button_action = false;
+    }
+  }
+  scrollHandler(){
+    if(!this.closest('.swiper-slide-active') && this.closest('.swiper-slide')){
+      return false;
+    }
+    
+    var v = this.player,
+        wp = window.scrollY,
+        wh = window.innerHeight,
+        p = v.getBoundingClientRect().top,
+        h = v.offsetHeight,
+        db = 20;
+
+    if(p<wh+db && p>-h-db){
+      if(!v.classList.contains('played')){
+        this.postMessageToPlayer(v, {
+          "event": "command",
+          "func": "playVideo"
+        });
+        v.classList.add('played');
+      }
+    }
+    else{
+      if(v.classList.contains('played')){
+        this.postMessageToPlayer(v, {
+          "event": "command",
+          "func": "pauseVideo"
+        });
+        v.classList.remove('played');
+      }
+    }
+  }
+  postMessageToPlayer(player, command){
+    if (player == null || command == null) return;
+    player.contentWindow.postMessage(JSON.stringify(command), "*");
+  }
+}
+customElements.define('video-youtube-js', VideoYoutubeJs);
+function onYouTubeIframeAPIReady() {
+  document.querySelectorAll('.section__video-media__youtube').forEach((item) => {
+      var id = item.querySelector("[id]").getAttribute("id"),
+          vid_id = id.split('_____').shift(),
+          mute = item.getAttribute("data-mute") == "true" ? 1 : 0;
+      var player = new YT.Player(id, {
+        height: '520',
+        width: '980',
+        videoId: vid_id,
+        playerVars: {
+          'playsinline': 1,
+          'mute': mute,
+          'controls':0,
+          'fs':0,
+          'iv_load_policy':3,
+          'rel':0,
+          'showinfo':0,
+          'modestbranding':1,
+          'loop':1,
+          'autoplay':0
+        },
+        events: {
+          'onReady': youtubeOnPlayerReady.bind("",item),
+          'onStateChange': youtubeOnPlayerStateChange.bind("",item)
+        }
+    });
+  })
+  return true;
+}
+function youtubeOnPlayerReady(item, event) {
+  item.dispatchEvent(new CustomEvent('youtubeOnPlayerReady'));
+}
+function youtubeOnPlayerStateChange(item, event) {
+  var getDuration = event.target.getDuration();
+  var getCurrentTime = event.target.getCurrentTime();
+  item.dispatchEvent(new CustomEvent('youtubeOnPlayerStateChange', {detail: {state:event.data, getDuration:getDuration, getCurrentTime:getCurrentTime}}));
+}
+if(document.querySelectorAll('[data-type="youtube"]').length){
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+}
+
+class sectionCounter extends HTMLElement {
+  constructor() {
+    super();
+  }
+  connectedCallback() {
+    var _this = this;
+    import("@theme/module-count-up").then((module) => { module.initCountUp(_this) });
+  }
+}
+customElements.define('section-counter', sectionCounter);

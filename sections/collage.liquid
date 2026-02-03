@@ -181,6 +181,48 @@ assign css_video = true
   }
   {%- endif -%}
   {%- endif -%}
+
+  {%- if block.settings.color_video_bg != "rgba(0,0,0,0)" -%}
+  {%- assign accent_brightness = block.settings.color_video_bg | color_extract: 'lightness' -%}
+  @media (min-width:1025px){
+    #collage-banner-block-{{ block.id }} .video-ctrl__play{
+      --background: {{ block.settings.color_video_bg }};
+      {%- if accent_brightness < 50 -%}
+      --fill: var(--auto-text-color-button-light);
+      {%- else -%}
+      --fill: var(--auto-text-color-button-dark);
+      {%- endif -%}
+    }
+  }
+  {%- endif -%}
+  {%- if block.settings.color_video_bg_hover != "rgba(0,0,0,0)" -%}
+  {%- assign accent_brightness = block.settings.color_video_bg_hover | color_extract: 'lightness' -%}
+  @media (min-width:1025px){
+    #collage-banner-block-{{ block.id }} .video-ctrl__play:hover{
+      --color-base: {{ block.settings.color_video_bg_hover }};
+    }
+    #collage-banner-block-{{ block.id }} .video-ctrl__play:hover svg path{
+      {%- if accent_brightness < 50 -%}
+      fill: var(--auto-text-color-button-light);
+      {%- else -%}
+      fill: var(--auto-text-color-button-dark);
+      {%- endif -%}
+    }
+  }
+  {%- endif -%}
+  {%- if block.settings.color_video_bg_mobile != "rgba(0,0,0,0)" -%}
+  {%- assign accent_brightness = block.settings.color_video_bg_mobile | color_extract: 'lightness' -%}
+  @media (max-width:1024px){
+    #collage-banner-block-{{ block.id }} .video-ctrl__play{
+      --background: {{ block.settings.color_video_bg_mobile }};
+      {%- if accent_brightness < 50 -%}
+      --fill: var(--auto-text-color-button-light);
+      {%- else -%}
+      --fill: var(--auto-text-color-button-dark);
+      {%- endif -%}
+    }
+  }
+  {%- endif -%}
 {%- endcapture -%}
 {%- if banner_styles != blank -%}
 {{ banner_styles }}
@@ -330,12 +372,64 @@ assign css_video = true
           echo ' image-hover-scaling-internal'
           endif
           endcapture
+          assign main_image_source = block.settings.image
         -%}
+
+        {%- capture videohtml -%}
+        {%- if block.settings.video != blank and block.settings.content_type == "video" -%}
+        <video-js class="section__video-media__box main-video-container"
+                  data-type="video"
+                  data-video-autoplay="{% if block.settings.video_slide_mode contains "autoplay" %}true{% else %}false{% endif %}"
+                  data-buttons="{% unless block.settings.video_slide_mode contains "autoplay" %}true{% else %}false{% endunless %}">
+          <video class="slide-video" playsinline=""{% if block.settings.video_slide_mode contains "muted" %} muted=""{% endif %} preload="metadata" loop="">
+            {%- assign sources = block.settings.video.sources | last -%}
+            <source src="{{ sources.url }}"/>
+          </video>
+        </video-js>
+        {%- liquid
+            if main_image_source == blank
+            assign main_image_source = block.settings.video.preview_image
+            endif
+        -%}
+        {%- elsif block.settings.video_url != blank and block.settings.content_type == "video" -%}
+        <video-youtube-js class="section__video-media__box section__video-media__youtube main-video-container"
+                          data-type="youtube"
+                          data-mute="{% if block.settings.video_slide_mode contains "muted" %}true{% else %}false{% endif %}"
+                          data-video-autoplay="{% if block.settings.video_slide_mode contains "autoplay" %}true{% else %}false{% endif %}"
+                          data-buttons="{% unless block.settings.video_slide_mode contains "autoplay" %}true{% else %}false{% endunless %}">
+          <div id="{{ block.settings.video_url.id }}_____{{ section.id }}{{ forloop.index }}" class="embed-player"></div>
+        </video-youtube-js>
+        {%- endif -%}
+        {%- endcapture -%}
+        {%- capture videobuttonhtml -%}
+        {%- unless block.settings.video_slide_mode contains "autoplay" -%}
+        {%- liquid
+            assign enable_buttons = false
+            if block.settings.video != blank and block.settings.content_type == "video"
+            assign enable_buttons = true
+            elsif block.settings.video_url != blank and block.settings.content_type == "video"
+            assign enable_buttons = true
+            endif
+            -%}
+        {%- if enable_buttons -%}
+        <div class="video-ctrl-banner video-ctrl">
+          <div class="video-ctrl__play ctrl__button ctrl__button--right btn-color section__video-media__ctrl--js">
+            <div class="icon-play">{%- render "icon-play-2" -%}</div>
+            <div class="icon-pause">{%- render "icon-pause" -%}</div>
+          </div>
+        </div>
+        {%- endif -%}
+        {%- endunless -%}
+        {%- endcapture -%}
         
-    {{ html_tag_open }} id="collage-banner-block-{{ block.id }}" class="border__radius clear-underline image-banner hover-area {{ image_hover_scaling_up }} {{ block.settings.design_type }}" style="--grid-area:grid_1;" {{ block.shopify_attributes }}>
-      {%- if block.settings.image == blank -%}
-      <div class="image-hover-scaling__image placeholder__svg--bg border__radius"{% if block.settings.image_ratio != 'auto' %} style="--aspect-ratio: {{block.settings.image_ratio}};"{% endif %}>
-        {%- render "icons-placeholder-other", icon_name:'lifestyle' -%}
+    {{ html_tag_open }} id="collage-banner-block-{{ block.id }}" class="section-media-buttons-parent border__radius clear-underline image-banner hover-area {{ image_hover_scaling_up }} {{ block.settings.design_type }}" style="--grid-area:grid_1;" {{ block.shopify_attributes }}>
+      {%- if main_image_source == blank -%}
+      <div class="image-hover-scaling__box position-relative">
+        <div class="image-hover-scaling__image placeholder__svg--bg border__radius"{% if block.settings.image_ratio != 'auto' %} style="--aspect-ratio: {{block.settings.image_ratio}};"{% endif %}>
+          {%- render "icons-placeholder-other", icon_name:'lifestyle' -%}
+          {{ videohtml }}
+        </div>
+        {{ videobuttonhtml }}
       </div>
       {%- else -%}
 
@@ -346,53 +440,25 @@ assign css_video = true
       {{ block.settings.image_ratio }}
       {%- endif -%}
       {%- endcapture -%}    
-
-      {%- liquid
-          assign image_ratio_mobile = ''
-          if block.settings.image_mobile != blank
-          if section.settings.design_type == "image-banner__default"
-          assign image_ratio_mobile = '--aspect-ratio-mobile:' | append: block.settings.image_mobile.aspect_ratio | append: ';'
-          else
-          assign image_ratio_mobile = '--aspect-ratio-phone:' | append: block.settings.image_mobile.aspect_ratio | append: ';'
-          endif
-          endif
-          -%}
-      <div class="image-hover-scaling__image border__radius" style="--aspect-ratio: {{image_ratio}};{{ image_ratio_mobile }}">
-        {%- assign image = block.settings.image -%}
-        {%- if block.settings.image_mobile == blank -%}
-        {%- capture sizes -%}
-        (min-width: 1440px) {% if page_is_wide %}calc((100vw - {{ settings.spacing_grid_horizontal }}px) / 2){% else %}calc(({{ settings.page_width }}px - 20px) / 2){% endif %},(min-width: 1025px) calc((100vw - 140px) / 2),(min-width: 577px) calc((100vw - 40px - {{ settings.spacing_grid_horizontal }}px) / 2),calc((100vw - 40px - {{ settings.spacing_grid_horizontal }}px) / 2)
-        {%- endcapture -%}
-        {%- capture image_class -%}{% if settings.animate_image_show %}image-show--fadein{% endif %}{%- endcapture -%}            
-        {%- capture animate_image_show -%}{% if settings.animate_image_show %}this.classList.add('image-loaded');{% endif %}{%- endcapture -%}
-        {{
-          image
-          | image_url: width: image.width
-          | image_tag:
-            loading: 'lazy',
-            width: image.width,
-            height: image.height,
-            class: image_class,
-            sizes: sizes,
-            widths: '400, 470, 620, 1240',
-            onload: animate_image_show
-        }}
-        {%- else -%}
-        {%- assign imagesize = block.settings.image.width | append: 'x' -%}
-        {%- assign imagesize_mobile = block.settings.image_mobile.width | append: 'x' -%}
-        <picture>
-          {%- if section.settings.design_type == "image-banner__default" -%}
-          <source srcset="{{ block.settings.image_mobile | img_url: imagesize_mobile }} 1x, {{ block.settings.image_mobile | img_url: imagesize_mobile, scale: 2 }} 2x" media="(max-width: 1024px) and (min-width: 534px)">
-          <source srcset="{{ block.settings.image_mobile | image_url: width: 533 }}" media="(max-width: 533px)">
-          <source srcset="{{ block.settings.image | img_url: imagesize }} 1x, {{ block.settings.image | img_url: imagesize, scale: 2 }} 2x" media="(min-width: 1025px)">
-          {%- else -%}
-          <source srcset="{{ block.settings.image_mobile | image_url: width: 576 }}" media="(max-width: 576px)">
-          <source srcset="{{ block.settings.image | img_url: imagesize }} 1x, {{ block.settings.image | img_url: imagesize, scale: 2 }} 2x" media="(min-width: 577px)">
-          {%- endif -%}
-          
-          {%- assign image = block.settings.image -%}
-          {%- capture image_class -%}{% if settings.animate_image_show %}image-show--fadein{% endif %}{%- endcapture -%}
-          {%- capture animate_image_show -%}{% if settings.animate_image_show %}this.classList.add('image-loaded');{% endif %}{%- endcapture -%}              
+      <div class="image-hover-scaling__box position-relative">
+        {%- liquid
+            assign image_ratio_mobile = ''
+            if block.settings.image_mobile != blank
+            if section.settings.design_type == "image-banner__default"
+            assign image_ratio_mobile = '--aspect-ratio-mobile:' | append: block.settings.image_mobile.aspect_ratio | append: ';'
+            else
+            assign image_ratio_mobile = '--aspect-ratio-phone:' | append: block.settings.image_mobile.aspect_ratio | append: ';'
+            endif
+            endif
+            -%}
+        <div class="image-hover-scaling__image border__radius" style="--aspect-ratio: {{image_ratio}};{{ image_ratio_mobile }}">
+          {%- assign image = main_image_source -%}
+          {%- if block.settings.image_mobile == blank -%}
+          {%- capture sizes -%}
+          (min-width: 1440px) {% if page_is_wide %}calc((100vw - {{ settings.spacing_grid_horizontal }}px) / 2){% else %}calc(({{ settings.page_width }}px - 20px) / 2){% endif %},(min-width: 1025px) calc((100vw - 140px) / 2),(min-width: 577px) calc((100vw - 40px - {{ settings.spacing_grid_horizontal }}px) / 2),calc((100vw - 40px - {{ settings.spacing_grid_horizontal }}px) / 2)
+          {%- endcapture -%}
+          {%- capture image_class -%}{% if settings.animate_image_show %}image-show--fadein{% endif %}{%- endcapture -%}            
+          {%- capture animate_image_show -%}{% if settings.animate_image_show %}this.classList.add('image-loaded');{% endif %}{%- endcapture -%}
           {{
             image
             | image_url: width: image.width
@@ -401,12 +467,42 @@ assign css_video = true
               width: image.width,
               height: image.height,
               class: image_class,
+              sizes: sizes,
+              widths: '400, 470, 620, 1240',
               onload: animate_image_show
           }}
-        </picture>
-        {%- endif -%}
+          {%- else -%}
+          {%- assign imagesize = block.settings.image.width | append: 'x' -%}
+          {%- assign imagesize_mobile = block.settings.image_mobile.width | append: 'x' -%}
+          <picture>
+            {%- if section.settings.design_type == "image-banner__default" -%}
+            <source srcset="{{ block.settings.image_mobile | img_url: imagesize_mobile }} 1x, {{ block.settings.image_mobile | img_url: imagesize_mobile, scale: 2 }} 2x" media="(max-width: 1024px) and (min-width: 534px)">
+            <source srcset="{{ block.settings.image_mobile | image_url: width: 533 }}" media="(max-width: 533px)">
+            <source srcset="{{ main_image_source | img_url: imagesize }} 1x, {{ main_image_source | img_url: imagesize, scale: 2 }} 2x" media="(min-width: 1025px)">
+            {%- else -%}
+            <source srcset="{{ block.settings.image_mobile | image_url: width: 576 }}" media="(max-width: 576px)">
+            <source srcset="{{ main_image_source | img_url: imagesize }} 1x, {{ main_image_source | img_url: imagesize, scale: 2 }} 2x" media="(min-width: 577px)">
+            {%- endif -%}
+            
+            {%- assign image = main_image_source -%}
+            {%- capture image_class -%}{% if settings.animate_image_show %}image-show--fadein{% endif %}{%- endcapture -%}
+            {%- capture animate_image_show -%}{% if settings.animate_image_show %}this.classList.add('image-loaded');{% endif %}{%- endcapture -%}              
+            {{
+              image
+              | image_url: width: image.width
+              | image_tag:
+                loading: 'lazy',
+                width: image.width,
+                height: image.height,
+                class: image_class,
+                onload: animate_image_show
+            }}
+          </picture>
+          {%- endif -%}
+          {{ videohtml }}
+        </div>
+        {{ videobuttonhtml }}
       </div>
-
       {%- endif -%}
 
       {%- liquid
@@ -817,6 +913,26 @@ assign css_video = true
 		"limit": 1,
         "settings": [
           {
+            "type": "select",
+            "id": "content_type",
+            "options": [
+              {
+              "value": "image",
+              "label": "t:sections.image-with--general.blocks.image.settings.content_type.options__image.label"
+              },
+              {
+              "value": "video",
+              "label": "t:sections.image-with--general.blocks.image.settings.content_type.options__video.label"
+              }
+            ],
+            "default": "image",
+            "label": "t:sections.image-with--general.blocks.image.settings.content_type.label"
+          },
+          {
+            "type": "header",
+            "content": "t:sections.slideshow.settings.header_name.content"
+          },
+          {
             "type": "image_picker",
             "id": "image",
             "label": "t:sections.general.settings.image.label"
@@ -873,6 +989,59 @@ assign css_video = true
             ],
             "default": "auto",
             "label": "t:sections.general.settings.image_ratio.label"
+          },
+          {
+            "visible_if": "{{ block.settings.content_type == 'video' }}",
+            "type": "header",
+            "content": "t:section_options.video_type"
+          },
+          {
+            "visible_if": "{{ block.settings.content_type == 'video' }}",
+            "type": "video",
+            "id": "video",
+            "label": "t:section_options.video"
+          },
+          {
+            "visible_if": "{{ block.settings.content_type == 'video' }}",
+            "type": "header",
+            "content": "t:section_options.youtube_video_info"
+          },
+          {
+            "visible_if": "{{ block.settings.content_type == 'video' }}",
+            "type": "paragraph",
+            "content": "t:section_options.youtube_video_info2"
+          },
+          {
+            "visible_if": "{{ block.settings.content_type == 'video' }}",
+            "type": "video_url",
+            "id": "video_url",
+            "accept": [
+              "youtube"
+            ],
+            "default": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "label": "t:section_options.video_url_url",
+            "info": "t:section_options.video_url_url_info"
+          },
+          {
+            "visible_if": "{{ block.settings.content_type == 'video' }}",
+            "type": "select",
+            "id": "video_slide_mode",
+            "options": [
+              {
+                "value": "autoplay_muted",
+                "label": "t:sections.slideshow.settings.video_slide_mode.option__2.label"
+              },
+              {
+                "value": "video_on_click",
+                "label": "t:sections.slideshow.settings.video_slide_mode.option__3.label"
+              },
+              {
+                "value": "muted",
+                "label": "t:sections.slideshow.settings.video_slide_mode.option__4.label"
+              }
+            ],
+            "default": "autoplay_muted",
+            "label": "t:sections.slideshow.settings.video_slide_mode.label"
           },
           {
             "type": "header",
@@ -1220,6 +1389,18 @@ assign css_video = true
             "label": "t:sections.banners.blocks.banner.settings.color_background.label"
           },
           {
+            "type": "color",
+            "id": "color_video_bg",
+            "default": "rgba(0,0,0,0)",
+			      "label": "t:section_options.video_bg"
+          },
+          {
+            "type": "color",
+            "id": "color_video_bg_hover",
+            "default": "rgba(0,0,0,0)",
+			      "label": "t:section_options.video_bg_hover"
+          },
+          {
             "type": "header",
 			"content": "t:sections.banners.blocks.banner.settings.header__2.content",
 		  },
@@ -1257,7 +1438,13 @@ assign css_video = true
             "type": "color",
             "id": "color_background_m",
             "default": "rgba(0,0,0,0)",
-			"label": "t:sections.banners.blocks.banner.settings.color_background.label"
+			      "label": "t:sections.banners.blocks.banner.settings.color_background.label"
+          },
+          {
+            "type": "color",
+            "id": "color_video_bg_mobile",
+            "default": "rgba(0,0,0,0)",
+			      "label": "t:section_options.video_bg"
           }
         ]
       },
@@ -1529,15 +1716,15 @@ assign css_video = true
               "vimeo"
             ],
             "default": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
-			"label": "t:sections.image-with--general.blocks.image.settings.video_url.label",
-			"placeholder": "t:sections.image-with--general.blocks.image.settings.video_url.placeholder",
-			"info": "t:sections.image-with--general.blocks.image.settings.video_url.info"
+            "label": "t:sections.image-with--general.blocks.image.settings.video_url.label",
+            "placeholder": "t:sections.image-with--general.blocks.image.settings.video_url.placeholder",
+            "info": "t:sections.image-with--general.blocks.image.settings.video_url.info"
           },
           {
             "type": "text",
             "id": "description",
-			"label": "t:sections.image-with--general.blocks.image.settings.description.label",
-			"info": "t:sections.image-with--general.blocks.image.settings.description.info"
+            "label": "t:sections.image-with--general.blocks.image.settings.description.label",
+                        "info": "t:sections.image-with--general.blocks.image.settings.description.info"
           },
           {
             "type": "header",
@@ -1556,6 +1743,7 @@ assign css_video = true
     "presets": [
       {
       	"name": "t:sections.collage.presets.name",
+        "category": "t:categories.banners",
         "blocks": [
           {
             "type": "banner"

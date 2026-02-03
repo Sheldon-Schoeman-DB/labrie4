@@ -74,6 +74,7 @@ class recentlyViewedProducts extends recordRecentlyViewedProducts {
     fetch(`${window.routes.collections_url}/all?view=ajax_recently_viewed&sort_by=${currentproducts}||${this.config().settings}`)
       .then((response) => response.text())
       .then((responseText) => {
+        if(responseText == "")return;
         _this.classList.remove("hide");
         var html = _this.querySelector('.recently-viewed-products-content').innerHTML;
         _this.querySelector('.recently-viewed-products-content').innerHTML = html + responseText;

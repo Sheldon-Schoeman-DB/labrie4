@@ -1,1 +1,35 @@
-{"sections":{"main":{"type":"main-page","disabled":true,"settings":{"top_spacing":"normal","width":"default","show_heading":true,"heading_aligment":"text-center"}},"custom_liquid_6JVHDc":{"type":"custom-liquid","settings":{"custom_liquid":"<style>\n.parent-container {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    flex-direction: column;\n    text-align: center;\n    height: 40vh;\n}\n\n#thank-you-img {\n    width: 350px;\n}\n\n@media (max-width: 768px) {\n\n    .parent-container {\n    height: 40vh;\n}\n    \n#thank-you-img {\n    width: 250px;\n}\n\n    h1 {\n    font-size: 25px;\n    line-height: 29px;\n}\n}\n\n<\/style>\n\n<div class=\"parent-container\">\n    <a href=\"https:\/\/yourshopifystore.com\">\n        <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0613\/2835\/9555\/files\/logo.svg?v=1726657161\" alt=\"Your Logo\" id=\"thank-you-img\">\n    <\/a>\n    <h1 style=\"margin: 30px 0 0 0\">Thank You for Your Submission!<\/h1>\n    <p>We appreciate your response and will get back to you shortly.<\/p>\n<\/div>","top_spacing":"normal","width":"default"}}},"order":["main","custom_liquid_6JVHDc"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "top_spacing": "normal",
+        "width": "default",
+        "show_heading": true,
+        "heading_aligment": "text-center"
+      }
+    },
+    "custom_liquid_6JVHDc": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<style>\n.parent-container {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    flex-direction: column;\n    text-align: center;\n    height: 40vh;\n}\n\n#thank-you-img {\n    width: 350px;\n}\n\n@media (max-width: 768px) {\n\n    .parent-container {\n    height: 40vh;\n}\n    \n#thank-you-img {\n    width: 250px;\n}\n\n    h1 {\n    font-size: 25px;\n    line-height: 29px;\n}\n}\n\n</style>\n\n<div class=\"parent-container\">\n    <a href=\"https://yourshopifystore.com\">\n        <img src=\"https://cdn.shopify.com/s/files/1/0613/2835/9555/files/logo.svg?v=1726657161\" alt=\"Your Logo\" id=\"thank-you-img\">\n    </a>\n    <h1 style=\"margin: 30px 0 0 0\">Thank You for Your Submission!</h1>\n    <p>We appreciate your response and will get back to you shortly.</p>\n</div>",
+        "top_spacing": "normal",
+        "width": "default"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_liquid_6JVHDc"
+  ]
+}
