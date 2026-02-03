@@ -1,0 +1,100 @@
+<style>
+  #pop-up-text {
+    font-size: 17px;
+    color: #3E79A5;
+  }
+
+  #pop-up-heading {
+    margin: 0 0 25px 0;
+    color: #3E79A5;
+    line-height: 42px;
+  }
+
+  #pop-up-button {
+    margin-top: 25px;
+  }
+
+  #pop-up-logo {
+    margin-bottom: -5px;
+  }
+
+  #pop-up-container {
+  width: 35%;
+  }
+
+  #pop-up-image {
+    margin: 30px 0 10px 0;
+  }
+
+  @media (max-width: 576px) {
+    #weekly-popup {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    #pop-up-heading {
+      font-size: 32px;
+      margin: 35px 0 20px 0;
+      line-height: 35px;
+    }
+
+    #pop-up-text {
+      font-size: 15px;
+      margin-bottom: -5px;
+    }
+
+    #mobile-br {
+      display: none;
+    }
+
+    #pop-up-container {
+      padding: 35px 25px !important;
+    }
+
+    #pop-up-logo {
+      width: 80%;
+      margin-bottom: -10px;
+    }
+
+    #pop-up-container {
+      width: 100%;
+    }
+  }
+</style>
+
+<div id="weekly-popup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;">
+  <div style="position:relative; background:white;padding:40px 35px;border-radius:10px;text-align:center;" id="pop-up-container">
+    <div id="close-popup" style="position:absolute;top:15px;right:15px;cursor:pointer;">
+      {% render "icon-close" %}
+    </div>
+    <img src="https://cdn.shopify.com/s/files/1/0613/2835/9555/files/logo_5832e2e4-9eae-4c3b-ac64-3f63abff62ce.svg?v=1739109140" height="100%" width="300px" id="pop-up-logo">
+    <img src="https://cdn.shopify.com/s/files/1/0613/2835/9555/files/bop.png?v=1756119768" height="100%" width="250px" id="pop-up-image">
+    <h1 id="pop-up-heading">Paws Up We <br id="mobile-br">Need Your Vote!</h1>
+    <p id="pop-up-text">We're barking mad with excitement - we're nominated for Best Kennel! Our four-legged friends can't vote (opposable thumbs, you know), so we're counting on our amazing human friends. Help us fetch this award! <br><br><b>Voting closes on 1 September at noon</b></p>
+    <div class="col-12" id="pop-up-button">
+    <a href="https://www.bestofsouthafrica.co.za/pretoria/bop-voting-pets/" class="btn btn_zoom btn--secondary w-full-sp btn__animation-arrow" target="_blank">
+      <span>Cast My Vote</span>
+    </a>
+  </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    const popup = document.getElementById('weekly-popup');
+    const close = document.getElementById('close-popup');
+    const last = localStorage.getItem('weeklyPopupDate');
+    const now = new Date();
+     
+    if (!last || (now - new Date(last)) > 24 * 60 * 60 * 1000) {
+      popup.style.display = 'flex';
+      document.body.style.overflow = 'none';
+    }
+     
+    close.addEventListener('click', function () {
+      popup.style.display = 'none';
+      document.body.style.overflow = '';
+      localStorage.setItem('weeklyPopupDate', new Date());
+    });
+  })();
+</script>

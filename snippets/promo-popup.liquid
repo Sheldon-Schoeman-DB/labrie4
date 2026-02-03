@@ -1,0 +1,54 @@
+<style>
+    #close-popup svg path {
+        fill: white;
+    }
+
+  @media (max-width: 576px) {
+    #pop-up-logo {
+      width: 80%;
+    }
+
+    #pop-up-container {
+      width: 100%;
+    }
+
+    #close-popup {
+      right: 65px !important;
+    }
+  }
+</style>
+
+<div id="weruva-popup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;">
+  <div style="position:relative; background:transparent;padding:0;border-radius:10px;text-align:center;" id="pop-up-container">
+    <div id="close-weruva-popup" style="position:absolute;top:15px;right:15px;cursor:pointer;">
+      {% render "icon-close" %}
+    </div>
+    <a href="https://labrie.co.za/collections/weruva-collection" id="close-weruva-link">
+    <img src="https://cdn.shopify.com/s/files/1/0613/2835/9555/files/Weruva-BF1200x1200.webp?v=1764075222" height="100%" width="650px" id="pop-up-logo" style="border-radius:10px;">
+    </a>
+  </div>
+</div>
+<script>
+  (function(){
+    const popup = document.getElementById('weruva-popup');
+    const close = document.getElementById('close-weruva-popup');
+    const closeLink = document.getElementById('close-weruva-link');
+    const last = localStorage.getItem('weruvaPopupDate');
+    const now = new Date();
+     
+    if (!last || (now - new Date(last)) > 24 * 60 * 60 * 1000) {
+      popup.style.display = 'flex';
+      document.body.style.overflow = 'none';
+    }
+     
+    function closeWeruvaPopup() {
+      popup.style.display = 'none';
+      document.body.style.overflow = '';
+      localStorage.setItem('weruvaPopupDate', new Date());
+      localStorage.setItem('weruvaJustClosed', 'true');
+    }
+
+    close.addEventListener('click', closeWeruvaPopup);
+    closeLink.addEventListener('click', closeWeruvaPopup);
+  })();
+</script>

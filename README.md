@@ -1,1 +1,0 @@
-# LaBrie Theme - Fresh Start
