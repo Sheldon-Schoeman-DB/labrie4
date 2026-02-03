@@ -1,0 +1,112 @@
+<style>
+  #pop-up-text {
+    font-size: 17px;
+    color: black;
+  }
+
+  #pop-up-heading {
+    margin: 40px 0 25px 0;
+    color: #3E79A5;
+  }
+
+  #pop-up-button {
+    margin-top: 25px;
+  }
+
+  #pop-up-logo {
+    margin-bottom: -5px;
+  }
+
+  .christmas-hat {
+    position: absolute;
+    right: -84px;
+    top: -49px;
+    transform: rotate(30deg);
+    height: 120px;
+  }
+
+  @media (max-width: 576px) {
+    #christmas-popup {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    #pop-up-heading {
+      font-size: 32px;
+      margin: 35px 0 20px 0;
+    }
+
+    #pop-up-text {
+      font-size: 15px;
+      margin-bottom: -5px;
+    }
+
+    #mobile-br {
+      display: none;
+    }
+
+    #pop-up-container {
+      padding: 35px 25px !important;
+    }
+
+    #pop-up-logo {
+      width: 80%;
+      margin-bottom: -10px;
+    }
+
+    .christmas-hat {
+      right: -40px;
+      top: -45px;
+      height: 70px;
+      transform: rotate(0);
+    }
+
+  }
+</style>
+
+<div id="christmas-popup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;">
+  <div style="position:relative; background:white;padding:40px 35px;border-radius:10px;text-align:center;" id="pop-up-container">
+    <div id="close-christmas-popup" style="position:absolute;top:20px;right:20px;cursor:pointer; z-index:20;">
+      {% render "icon-close" %}
+    </div>
+    <img src="https://cdn.shopify.com/s/files/1/0613/2835/9555/files/Christmas_Hat_2.svg?v=1763119758" class="christmas-hat">
+    <img src="https://cdn.shopify.com/s/files/1/0613/2835/9555/files/logo_5832e2e4-9eae-4c3b-ac64-3f63abff62ce.svg?v=1739109140" height="100%" width="300px" id="pop-up-logo">
+    <h1 id="pop-up-heading">🎁Meowy Christmas & <br>Happy Howlidays🎁</h1>
+    <p id="pop-up-text">Christmas treats, jolly toys, and <br>holiday must-haves for your furry friends.</span></p>
+    <div class="col-12" id="pop-up-button">
+    <a href="https://labrie.co.za/collections/christmas-collection" class="btn btn_zoom btn--secondary w-full-sp btn__animation-arrow" id="close-christmas-button">
+      <span>SHOP NOW</span>
+    </a>
+  </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    const popup = document.getElementById('christmas-popup');
+    const close = document.getElementById('close-christmas-popup');
+    const closeButton = document.getElementById('close-christmas-button');
+    const last = localStorage.getItem('christmasPopupDate');
+    const weruvaJustClosed = localStorage.getItem('weruvaJustClosed');
+    const now = new Date();
+
+    // Show if: Weruva was just closed OR it's been 7 days since last shown
+    if (weruvaJustClosed === 'true' || (!last || (now - new Date(last)) > 7 * 24 * 60 * 60 * 1000)) {
+      // Small delay to allow Weruva popup to fully close
+      setTimeout(function() {
+        popup.style.display = 'flex';
+        document.body.style.overflow = 'none';
+        localStorage.removeItem('weruvaJustClosed'); // Clear the flag
+      }, 300);
+    }
+
+    function closeChristmasPopup() {
+      popup.style.display = 'none';
+      document.body.style.overflow = '';
+      localStorage.setItem('christmasPopupDate', new Date());
+    }
+
+    close.addEventListener('click', closeChristmasPopup);
+    closeButton.addEventListener('click', closeChristmasPopup);
+  })();
+</script>
