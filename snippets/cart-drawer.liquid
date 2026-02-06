@@ -30,10 +30,6 @@
   .cart-drawer-container {
     visibility: hidden;
   }
-  .backorder-message {
-    color: red;
-    margin-top: 5px;
-  }
 </style>
 
 <cart-drawer class="cart-drawer-container{% if cart == empty %} is-empty{% endif %}">
@@ -117,42 +113,18 @@
         <div class="drawer__footer-content">
           <h2 class="drawer__heading mt0 mb0">{{ 'sections.cart.title' | t }}</h2>
           {%- if settings.show_free_delivery -%}
-          
           <div id="cart-page-free-delivery" class="free-delivery-bar">
             {%- render "free-delivery-bar" -%}
             <div class="free-delivery-bar__end hide"></div>
           </div>
           {%- endif -%}
         </div>
-        <!-- SHIPPING LIMIT -->
-        <div style="margin-top: 0;">
-        {% render 'shipping-limit-banner' %}
-        </div>
-        <!-- SHIPPING LIMIT -->
+
         <cart-drawer-items{% if cart == empty %} class="is-empty"{% endif %}>
           <form action="{{ routes.cart_url }}" id="CartDrawer-Form" class="cart__contents cart-drawer__form" method="post">
             <div id="CartDrawer-CartItems" class="drawer__contents js-contents">
 
-              <!-- CART NOT EMPTY -->
               {%- if cart != empty -%}
-                
-                <!-- Backorder Message -->
-                {% assign totalBackorderCount = 0 %}
-                {% for item in cart.items %}
-                  {% assign availableStock = item.variant.inventory_quantity %}
-                  {% assign cartQuantity = item.quantity %}
-                  {% assign backorderCount = 0 %}
-                
-                  {% if item.variant.inventory_management == "shopify" and item.variant.inventory_policy == "continue" %}
-                    {% if cartQuantity > availableStock %}
-                      {% assign oversoldQuantity = cartQuantity | minus: availableStock %}
-                      {% assign backorderCount = oversoldQuantity %}
-                      {% assign totalBackorderCount = totalBackorderCount | plus: backorderCount %}
-                    {% endif %}
-                  {% endif %}
-                {% endfor %}
-                <!-- Backorder Message -->
-              
               
               <div class="drawer__cart-items-wrapper">
 
@@ -228,30 +200,13 @@
                               {%- endif -%}
                             </dd>
                           </div>
-                          {%- endif -%}                            
+                          {%- endif -%}
                           {%- endfor -%}
                         </dl>
       
                         <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
                         {%- endif -%}
-
-                        
-                        <!-- BACKORDER MESSAGE -->
-                        {% if item.variant.inventory_management == "shopify" and item.variant.inventory_policy == "continue" %}
-                        {% assign availableStock = item.variant.inventory_quantity %}
-                        {% assign backorderCount = 0 %}
-                        {% if item.quantity > availableStock %}
-                          {% assign oversoldQuantity = item.quantity | minus: availableStock %}
-                          {% assign backorderCount = oversoldQuantity %}
-                        {% endif %}
-                        {% if backorderCount > 0 %}
-                          <div id="backorder-message-{{ item.id }}" class="backorder-message">
-                            {{ backorderCount }} item(s) on backorder
-                          </div>
-                        {% endif %}
-                      {% endif %}
-                        <!-- BACKORDER MESSAGE -->
-                        
+      
                         <ul class="discounts unstyle-ul" role="list" aria-label="{{ 'customer.order.discount' | t }}">
                           {%- for discount in item.discounts -%}
                           <li class="discounts__discount">
@@ -260,6 +215,7 @@
                           </li>
                           {%- endfor -%}
                         </ul>
+      
                         <div class="cart-item__error" id="CartDrawer-LineItemError-{{ item.index | plus: 1 }}" role="alert">
                           <span class="cart-item__error-text"></span>
                           {%- render "icon-attention" -%}
@@ -313,8 +269,8 @@
                         <label class="visually-hidden" for="Quantity-{{ item.index | plus: 1 }}">
                           {{ 'products.product.quantity.label' | t }}
                         </label>
-                        <quantity-input class="field quantity" data-product-id="{{ item.product.id }}">
-                          <button class="quantity__button no-js-hidden" name="minus" type="button" data-product-id="{{ item.product.id }}">
+                        <quantity-input class="field quantity">
+                          <button class="quantity__button no-js-hidden" name="minus" type="button">
                             <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}</span>
                             {% render 'icon-minus' %}
                           </button>
@@ -327,13 +283,13 @@
                                  id="Drawer-quantity-{{ item.index | plus: 1 }}"
                                  data-index="{{ item.index | plus: 1 }}"
                                  >
-                          <button class="quantity__button no-js-hidden" name="plus" type="button" data-product-id="{{ item.product.id }}">
+                          <button class="quantity__button no-js-hidden" name="plus" type="button">
                             <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}</span>
                             {% render 'icon-plus' %}
                           </button>
                         </quantity-input>
     
-                        <cart-remove-button id="CartDrawer-Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}" data-product-id="{{ item.product.id }}>
+                        <cart-remove-button id="CartDrawer-Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
                           <a href="{{ item.url_to_remove }}" class="drawer__cart-remove-button" aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">
                             {% render 'icon-remove' %}
                           </a>
@@ -358,7 +314,6 @@
         <div class="drawer__footer-footer">
           {%- if settings.show_cart_note -%}
           <toggle-component class="cart-drawer__collection chm-toggle--accordion top-and-bottom-lines mt40">
-          {%- if settings.show_cart_note -%}
             <details class="chm-toggle">
               <summary>
                 <div class="chm-toggle__button">
@@ -372,14 +327,33 @@
                             id="CartDrawer-Note"
                             name="note"
                             placeholder="{{ 'sections.cart.note' | t }}"
-                            >{{ cart.note }}</textarea>         
+                            >{{ cart.note }}</textarea>
                   <label class="field__label" for="CartDrawer-Note">{{ 'sections.cart.note' | t }}</label>
                 </cart-note>
               </div>
             </details>
-          {%- endif -%}
           </toggle-component>
           {%- endif -%}
+
+          {%- if settings.show_add_discount_code -%}
+          {%- capture html_discount -%}
+          {%- render "cart-discount", section_id:section.id -%}
+          {%- endcapture -%}
+          <toggle-component class="cart-drawer__collection chm-toggle--accordion top-and-bottom-lines mt40">
+            <details class="chm-toggle{% if html_discount contains 'data-discount-code' %} toggle-opening{% endif %}"{% if html_discount contains 'data-discount-code' %} open{% endif %}>
+              <summary>
+                <div class="chm-toggle__button">
+                  <h5 class="mt0 mb0">{{ "general.cart.heading_discount" | t }}</h5>
+                  {%- render "icon-arrow-down-small" -%}
+                </div>
+              </summary>
+              <div class="mt0 chm-toggle__content mt--first-child-0">
+                {{ html_discount }}
+              </div>
+            </details>
+          </toggle-component>
+          {%- endif -%}
+
           <div class="cart__footer__information">
             <div class="cart__footer__content js-contents body3" {{ block.shopify_attributes }}>
               <div class="totals">
@@ -387,6 +361,9 @@
                 <p class="mt0 h3 totals__subtotal-value">{{ cart.total_price | money_with_currency }}</p>
               </div>
   
+              {% if settings.show_installments %}
+                <span class="cart__summary-item cart__installments display-block mt10">{% form 'cart', cart %}{{ form | payment_terms }}{% endform %}</span>
+              {% endif %}
               {%- if cart.cart_level_discount_applications.size > 0 -%}
               <div class="mt10">
                 <ul class="discounts unstyle-ul" role="list" aria-label="{{ 'customer.order.discount' | t }}">
@@ -414,7 +391,15 @@
               </div>
             </div>
   
+            {%- liquid
+                assign accel_buttons = false
+                if additional_checkout_buttons and settings.show_accelerated_checkout_buttons
+                assign accel_buttons = true
+                endif
+            -%}
+
             {%- if settings.terms_and_condition_checkbox -%}
+            {%- if accel_buttons or settings.show_checkout_button -%}
             <terms_and_condition-checkbox>
               <label for="product-terms_and_condition_checkbox-{{ section.id }}" class="checkbox-input body2">
                 <input id="product-terms_and_condition_checkbox-{{ section.id }}"
@@ -431,6 +416,9 @@
               </label>
             </terms_and_condition-checkbox>
             {%- endif -%}
+            {%- endif -%}
+
+            {%- if settings.show_checkout_button -%}
             <div class="cart__footer__content" {{ block.shopify_attributes }}>
               <noscript>
                 <button type="submit" class="btn btn_zoom btn--secondary w-full" form="CartDrawer-Form">
@@ -441,32 +429,23 @@
                 <span>{{ 'sections.cart.checkout' | t }}</span>
               </button>
             </div>
-          </div>
-          <!-- CART WEIGHT -->
-          {% assign cart_total_weight = cart.total_weight | divided_by: 1000.0 %}
+            {%- endif -%}
+            {% if additional_checkout_buttons and settings.show_accelerated_checkout_buttons %}
+            <div class="cart__dynamic-checkout-buttons additional-checkout-buttons additional-checkout-buttons--vertical mt10">{{ content_for_additional_checkout_buttons }}</div>
+            {% endif %}
 
-          {% if cart_total_weight > 25 %}
-            <style>
-              .free-delivery-bar__toolbar.body2 {
-                display: none;
-              }
-              
-              #product-page-free-delivery {
-                display: none;
-              }
-          
-              .shipping-limit-container {
-                display: inline-flex;
-              }
-            </style>
-          {% else %}
-            <style>
-              .shipping-limit-container {
-                display: none;
-              }
-            </style>
-          {% endif %}
-          <!-- CART WEIGHT -->
+            <div class="mt30 drawer__inner__links">
+              <button class="link btn-medium btn-medium--icon color-accent-to-base" type="button" onclick="this.closest('cart-drawer').close()" aria-label="{{ 'accessibility.close' | t }}">
+                {% render 'icon-arrow-left' %}
+                <span>{{ 'general.continue_shopping' | t }}</span>
+              </button>
+              <a href="{{ routes.cart_url }}" class="btn-medium btn-medium--icon color-accent-to-base">
+                <span>{{- 'general.cart.view_empty_cart' | t -}}</span>
+                {% render 'icon-arrow-right' %}
+              </a>
+            </div>
+
+          </div>            
         </div>
       </div>
     </drawer-inner>

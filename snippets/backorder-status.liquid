@@ -1,0 +1,45 @@
+{%- comment -%}
+  Custom backorder/inventory status display.
+  Expects: current_variant, section, block, invertory (captured inventory HTML)
+{%- endcomment -%}
+
+<div class="productStatus">
+  {% if current_variant.available and current_variant.inventory_quantity > 0 and current_variant.inventory_quantity < 5 %}
+    <div id="inventory-{{ section.id }}" class="inventory-block" {{ block.shopify_attributes }}>{{ invertory }}</div>
+  {% elsif current_variant.available and current_variant.inventory_quantity == 0 %}
+    <div class="backorder-container">
+      <div class="backorder-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" focusable="false" aria-hidden="true">
+          <path stroke="#8f6900" stroke-linecap="round" d="M7 5.6v2.1"></path>
+          <circle cx="7" cy="9.8" r="0.2" fill="#8f6900"></circle>
+          <path stroke="#8f6900" stroke-linecap="round" stroke-linejoin="round" d="M7.002 9.798h-.005v.005h.005z"></path>
+          <path stroke="#8f6900" fill="none" d="M6.585 2.177a.47.47 0 0 1 .83 0l4.816 9.032a.47.47 0 0 1-.414.69H2.183a.47.47 0 0 1-.414-.69z"></path>
+        </svg>
+      </div>
+      <div class="backorder-column">
+        <span class="statusBackorder" id="backorder-text"><b>Available on backorder.</b></span>
+        <p style="margin-top: 0;" id="backorder-text">This may impact your shipping and delivery time.</p>
+      </div>
+    </div>
+  {% elsif current_variant.available == false and current_variant.inventory_quantity == 0 %}
+    <div class="outofstock-container">
+      <div class="outofstock-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" focusable="false" aria-hidden="true">
+          <path stroke="#AA0000" stroke-linecap="round" d="M7 5.6v2.1"></path>
+          <circle cx="7" cy="9.8" r="0.2" fill="#AA0000"></circle>
+          <path stroke="#AA0000" stroke-linecap="round" stroke-linejoin="round" d="M7.002 9.798h-.005v.005h.005z"></path>
+          <path stroke="#AA0000" fill="none" d="M6.585 2.177a.47.47 0 0 1 .83 0l4.816 9.032a.47.47 0 0 1-.414.69H2.183a.47.47 0 0 1-.414-.69z"></path>
+        </svg>
+      </div>
+      <span id="outofstock-text"><b>Out of stock.</b></span>
+    </div>
+  {% else %}
+    <div id="inventory-{{ section.id }}" class="inventory-block">
+      <svg class="icon-inventory" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10Z" fill="#D7EDEC"></path>
+        <path d="M8.79072 14.4239L15.4235 7.70267L14 6.29785L8.79072 11.5766L6.42355 9.17785L5 10.5827L8.79072 14.4239Z" fill="#009688"></path>
+      </svg>
+      <span class="inventory-block__normal">In stock!</span>
+    </div>
+  {% endif %}
+</div>

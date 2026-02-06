@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "header": {
@@ -19,9 +28,9 @@
       "empty": "Din vogn er tom",
       "cart_error": "Der opstod en fejl under opdatering af din indkøbskurv. Prøv igen.",
       "cart_quantity_error_html": "Du kan kun tilføje [quantity] af denne vare til din indkøbskurv.",
-      "taxes_and_shipping_policy_at_checkout_html": "Skatter og<b><a href=\"{{ link }}\">forsendelse<\/a><\/b>beregnes ved kassen",
+      "taxes_and_shipping_policy_at_checkout_html": "Skatter og<b><a href=\"{{ link }}\">forsendelse</a></b>beregnes ved kassen",
       "taxes_included_but_shipping_at_checkout": "Moms inkluderet og fragt beregnes ved kassen",
-      "taxes_included_and_shipping_policy_html": "Skat inkluderet. <b><a href=\"{{ link }}\">Forsendelse<\/a><\/b> beregnes ved kassen.",
+      "taxes_included_and_shipping_policy_html": "Skat inkluderet. <b><a href=\"{{ link }}\">Forsendelse</a></b> beregnes ved kassen.",
       "taxes_and_shipping_at_checkout": "Skatter og forsendelse beregnes ved kassen",
       "headings": {
         "product": "Produkt",
@@ -32,7 +41,7 @@
       "update": "Opdatering",
       "login": {
         "title": "Har du en konto?",
-        "paragraph_html": "<b><a href=\"{{ link }}\">Log ind<\/a><\/b> for at tjekke ud hurtigere."
+        "paragraph_html": "<b><a href=\"{{ link }}\">Log ind</a></b> for at tjekke ud hurtigere."
       }
     },
     "footer": {
@@ -46,7 +55,7 @@
     },
     "collection_template": {
       "empty": "Ingen produkter fundet",
-      "use_fewer_filters_html": "Brug færre filtre eller<a class=\"{{ class }}\" href=\"{{ link }}\">ryd alle<\/a>"
+      "use_fewer_filters_html": "Brug færre filtre eller<a class=\"{{ class }}\" href=\"{{ link }}\">ryd alle</a>"
     }
   },
   "general": {
@@ -58,7 +67,7 @@
       "login_form_error": "Forkert kodeord!",
       "login_form_submit": "Gå ind",
       "modal": "Adgangskode modal",
-      "admin_link_html": "Er du butiksejer? <a href=\"\/admin\" class=\"strong\">Log ind her<\/a>",
+      "admin_link_html": "Er du butiksejer? <a href=\"/admin\" class=\"strong\">Log ind her</a>",
       "powered_by_shopify_html": "Denne butik vil blive drevet af Shopify"
     },
     "social": {
@@ -82,7 +91,18 @@
       "view": "Se min indkøbskurv ({{ count }})",
       "item_added": "Vare tilføjet til din indkøbskurv",
       "drawer_collection_heading": "TOP PRODUCTS OF THIS WEEK",
-      "drawer_note_heading": "ORDER SPECIAL INSTRUCTIONS"
+      "drawer_note_heading": "ORDER SPECIAL INSTRUCTIONS",
+      "view_empty_cart": "View Cart",
+      "heading_message": "ORDER SPECIAL INSTRUCTIONS",
+      "heading_discount": "DISCOUNT",
+      "drawer_discount_heading": "Discount",
+      "discount": "Apply a discount code",
+      "discount_applied": "Applied discount code: {{ code }}",
+      "discount_code": "Discount code",
+      "shipping_discount_error": "Shipping discounts are shown at checkout after adding an address",
+      "discount_code_error": "Discount code cannot be applied to your cart",
+      "apply": "Apply",
+      "remove_discount": "Remove Discount"
     },
     "share": {
       "close": "Luk andel",
@@ -104,10 +124,10 @@
     "abbreviation_of_text_in_a_section": {
       "last_characters": "..."
     },
-    "accept_terms_checkbox_html": "Jeg er enig med <a href=\"\/\">Vilkår og betingelser.<\/a>",
+    "accept_terms_checkbox_html": "Jeg er enig med <a href=\"/\">Vilkår og betingelser.</a>",
     "free_shipping": {
-      "normal_html": "Brug <span class=\"strong\">{{ price }}<\/span> til <span class=\"strong\">GRATIS FRAGT<\/span>",
-      "free_shipping_html": "<span class=\"strong\">GRATIS FRAGT<\/span>"
+      "normal_html": "Brug <span class=\"strong\">{{ price }}</span> til <span class=\"strong\">GRATIS FRAGT</span>",
+      "free_shipping_html": "<span class=\"strong\">GRATIS FRAGT</span>"
     }
   },
   "newsletter": {
@@ -171,7 +191,7 @@
       "description": "Beskrivelse",
       "on_sale": "Salg",
       "product_variants": "Produktvarianter",
-      "quick_view": "Quick view",
+      "quick_view":"Quick view",
       "media": {
         "open_media": "Åbn mediet {{ index }} i modal",
         "play_model": "Spil 3D Viewer",
@@ -205,14 +225,14 @@
         "view_store_info": "Se butiksoplysninger",
         "check_other_stores": "Tjek tilgængelighed i andre butikker",
         "pick_up_available": "Mulighed for afhentning",
-        "pick_up_available_at_html": "Kan afhentes kl <strong>{{ location_name }}<\/strong>",
-        "pick_up_unavailable_at_html": "Afhentning i øjeblikket ikke tilgængelig kl <strong>{{ location_name }}<\/strong>",
+        "pick_up_available_at_html": "Kan afhentes kl <strong>{{ location_name }}</strong>",
+        "pick_up_unavailable_at_html": "Afhentning i øjeblikket ikke tilgængelig kl <strong>{{ location_name }}</strong>",
         "unavailable": "Afhentnings tilgængelighed kunne ikke indlæses",
         "refresh": "Opdater"
       },
       "view_full_details": "Se alle detaljer",
       "include_taxes": "Skat inkluderet.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Fragt<\/a> beregnes ved kassen.",
+      "shipping_policy_html": "<a href=\"{{ link }}\">Fragt</a> beregnes ved kassen.",
       "choose_options": "Vælg muligheder",
       "choose_product_options": "Choose options for {{ product_name }}",
       "information": {
@@ -284,7 +304,8 @@
       "title": "Search results",
       "search_for": "Search for “{{ terms }}”",
       "suggestions": "SUGGESTIONS",
-      "pages": "PAGES"
+      "pages": "PAGES",
+      "collections": "COLLECTIONS"
     },
     "cart": {
       "cart": "Vogn"
@@ -307,10 +328,10 @@
     }
   },
   "localization": {
-    "country_label": "Land\/område",
+    "country_label": "Land/område",
     "language_label": "Sprog",
     "update_language": "Opdater sprog",
-    "update_country": "Opdater land\/område"
+    "update_country": "Opdater land/område"
   },
   "customer": {
     "account": {
@@ -339,9 +360,9 @@
       "address1": "Adresse 1",
       "address2": "Adresse 2",
       "city": "By",
-      "country": "Land\/område",
+      "country": "Land/område",
       "province": "Provins",
-      "zip": "Post\/Postnummer",
+      "zip": "Post/Postnummer",
       "phone": "Telefon",
       "set_default": "Indstil som standardadresse",
       "add": "Tilføj adresse",
@@ -418,7 +439,12 @@
       "password": "Adgangskode",
       "password_confirm": "Bekræft kodeord",
       "submit": "Nulstille kodeord"
-    }
+    },
+    "account_title": "Account",
+    "account_title_personalized": "Hi {{ first_name }}",
+    "account_orders": "Orders",
+    "account_profile": "Profile",
+    "sign_in_options": "Other Sign In Options"
   },
   "gift_cards": {
     "issued": {

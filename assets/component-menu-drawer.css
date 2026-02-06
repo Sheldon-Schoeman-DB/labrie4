@@ -83,7 +83,22 @@ details[open] .drawer__outer-background{
   margin-top: var(--padding4);
 }
 .drawer__content-pad > .menu-drawer__navigation + *{
-  margin-top: calc(var(--padding4) - 13px);
+  position:relative;
+  margin-top: -13px;
+  padding-top: calc(var(--padding4) * 2 + 1px);
+}
+.drawer__content-pad > .menu-drawer__navigation + *:before{
+  content:"";
+  position:absolute;
+  top:var(--padding4);
+  left:0;
+  width:100%;
+  height:1px;
+  background: var(--color-base);
+  opacity: .3;
+}
+.drawer__content-pad > .menu-drawer__navigation ~ *:last-child{
+  padding-bottom:20px;
 }
 .menu-drawer__inner-submenu{
   height: 100%;

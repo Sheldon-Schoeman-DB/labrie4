@@ -21,7 +21,7 @@
 <div>
   <div class="price mt5">
     {%- if compare_at_price == blank or compare_at_price <= price -%}
-    <div class="price__main-color h5">{{ money_price }}</div>
+    <div class="price__main-color card__price__main h5">{{ money_price }}</div>
     {%- else -%}
     <div class="price__regular body2">
       {% if settings.currency_code_enabled %}
@@ -30,7 +30,7 @@
       {{ compare_at_price | money }}
       {% endif %}
     </div>
-    <div class="price__sale h5">{{ money_price }}</div>
+    <div class="price__sale card__price__main h5">{{ money_price }}</div>
     {%- endif -%}
   </div>
   <div class="unit-price body3{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hide{% endif %}">

@@ -22,10 +22,10 @@ header{
   align-items: center;
   text-decoration: none;
 }
-.header__button+.header__button{
+.header__icons__customer>*+*{
   margin-left: 41px;
 }
-.header__button+.header__button:before{
+.header__icons__customer>*+*:before{
   content: "";
   position: absolute;
   left: -21px;
@@ -330,4 +330,89 @@ header{
   .header-phone-number__mobile__box{
     padding:0 20px 20px;
   }
+}
+
+
+
+
+.header-customer-accounts{
+  position: relative;
+}
+.header-customer-accounts__modal{
+  --top-offset: 15px;
+  min-width: 320px;
+  position: absolute;
+  top: calc(100% + var(--top-offset) + 0px);
+  right: -20px;
+  border-radius: var(--radius);
+  background: var(--color-simple-dropdown);
+  box-shadow: var(--shadow);
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--duration-medium) ease, top var(--duration-medium) ease, left var(--duration-medium) ease, visibility var(--duration-medium) ease;
+  padding: 20px;
+}
+.header-customer-accounts__modal:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: calc(var(--top-offset) * 2);
+  position: absolute;
+  top: calc(var(--top-offset) * -1);
+  left: 0;
+}
+.header-customer-accounts:hover .header-customer-accounts__modal{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  top: calc(100% + var(--top-offset));
+}
+.account-actions__shop-login{
+  --buttons-radius:var(--radius-button);
+  --font-paragraph--size: calc(16px * var(--font-body-scale));
+  --font-paragraph--line-height:130%;
+  --button-padding-block:15px;
+  --button-padding-inline:20px;
+}
+.account-actions__sign-ins {
+  margin-top:10px;
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+}
+.header-customer-accounts__nav{
+  margin-top:10px;
+  display:flex;
+  flex-direction: column;
+  gap:10px;
+}
+.header-customer-accounts__nav .btn{
+  font-size: calc(16px * var(--font-body-scale));
+}
+.account-actions__sign-ins:not(:has(shop-login-button)){
+  gap: 0;
+}
+.account-actions__fallback-text{
+  display: none;
+}
+.account-actions__sign-in-text{
+  display:flex;
+}
+.account-actions__sign-ins:not(:has(shop-login-button)) .account-actions__sign-in-text{
+  display: none;
+}
+.account-actions__sign-ins:not(:has(shop-login-button)) .account-actions__fallback-text{
+  display: flex;
+}
+.menu-drawer__account-icons:not(:has(shop-login-button)) .account-actions__sign-in-text{
+  display: none;
+}
+.menu-drawer__account-icons:not(:has(shop-login-button)) .account-actions__fallback-text{
+  display: flex;
+}
+.btn [class*="account-actions__"]{
+  flex-direction:row;
+  align-items:center;
 }

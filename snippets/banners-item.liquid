@@ -31,25 +31,75 @@
   echo 'image-hover-scaling-up'
   endif
   endcapture
+  assign main_image_source = block.settings.image
 -%}
 
-{{ html_tag_open }} id="image-banner-block-{{ block.id }}" class="clear-underline image-banner hover-area {{ image_hover_scaling_up }}{% if is_slider %} slideshow for-buttons__item--js{% if is_active %} slideshow-active-in-start active{% endif %}{% endif %}">
-  {%- if block.settings.image == blank -%}
-  <div class="image-hover-scaling__box">
+{%- capture videohtml -%}
+{%- if block.settings.video != blank and block.settings.content_type == "video" -%}
+<video-js class="section__video-media__box main-video-container"
+          data-type="video"
+          data-video-autoplay="{% if block.settings.video_slide_mode contains "autoplay" %}true{% else %}false{% endif %}"
+          data-buttons="{% unless block.settings.video_slide_mode contains "autoplay" %}true{% else %}false{% endunless %}">
+  <video class="slide-video" playsinline=""{% if block.settings.video_slide_mode contains "muted" %} muted=""{% endif %} preload="metadata" loop="">
+    {%- assign sources = block.settings.video.sources | last -%}
+    <source src="{{ sources.url }}"/>
+  </video>
+</video-js>
+{%- liquid
+    if main_image_source == blank
+    assign main_image_source = block.settings.video.preview_image
+    endif
+-%}
+{%- elsif block.settings.video_url != blank and block.settings.content_type == "video" -%}
+<video-youtube-js class="section__video-media__box section__video-media__youtube main-video-container"
+                  data-type="youtube"
+                  data-mute="{% if block.settings.video_slide_mode contains "muted" %}true{% else %}false{% endif %}"
+                  data-video-autoplay="{% if block.settings.video_slide_mode contains "autoplay" %}true{% else %}false{% endif %}"
+                  data-buttons="{% unless block.settings.video_slide_mode contains "autoplay" %}true{% else %}false{% endunless %}">
+  <div id="{{ block.settings.video_url.id }}_____{{ section.id }}{{ forloop.index }}" class="embed-player"></div>
+</video-youtube-js>
+{%- endif -%}
+{%- endcapture -%}
+{%- capture videobuttonhtml -%}
+{%- unless block.settings.video_slide_mode contains "autoplay" -%}
+{%- liquid
+    assign enable_buttons = false
+    if block.settings.video != blank and block.settings.content_type == "video"
+    assign enable_buttons = true
+    elsif block.settings.video_url != blank and block.settings.content_type == "video"
+    assign enable_buttons = true
+    endif
+    -%}
+{%- if enable_buttons -%}
+<div class="video-ctrl-banner video-ctrl">
+  <div class="video-ctrl__play ctrl__button ctrl__button--right btn-color section__video-media__ctrl--js">
+    <div class="icon-play">{%- render "icon-play-2" -%}</div>
+    <div class="icon-pause">{%- render "icon-pause" -%}</div>
+  </div>
+</div>
+{%- endif -%}
+{%- endunless -%}
+{%- endcapture -%}
+
+{{ html_tag_open }} id="image-banner-block-{{ block.id }}" class="section-media-buttons-parent clear-underline image-banner hover-area {{ image_hover_scaling_up }}{% if is_slider %} slideshow for-buttons__item--js{% if is_active %} slideshow-active-in-start active{% endif %}{% endif %}">
+  {%- if main_image_source == blank -%}
+  <div class="image-hover-scaling__box position-relative">
     <div class="image-hover-scaling__image placeholder__svg--bg border__radius"{% if section.settings.image_ratio != 'auto' %} style="--aspect-ratio: {{section.settings.image_ratio}};"{% endif %}>
       {%- render "icons-placeholder-other", icon_name:'lifestyle' -%}
+      {{ videohtml }}
     </div>
+    {{ videobuttonhtml }}
   </div>
   {%- else -%}
 
   {%- capture image_ratio -%}
   {%- if section.settings.image_ratio == 'auto' -%}
-  {{ block.settings.image.aspect_ratio }}
+  {{ main_image_source.aspect_ratio }}
   {%- else -%}
   {{ section.settings.image_ratio }}
   {%- endif -%}
   {%- endcapture -%}
-  <div class="image-hover-scaling__box">
+  <div class="image-hover-scaling__box position-relative">
     {%- liquid
         assign image_ratio_mobile = ''
         if block.settings.image_mobile != blank
@@ -68,7 +118,7 @@
           assign page_is_wide = false
           endif
       -%}
-      {%- assign image = block.settings.image -%}
+      {%- assign image = main_image_source -%}
       {%- if block.settings.image_mobile == blank -%}
       {%- capture sizes -%}
       (min-width: 1440px) {% if page_is_wide %}calc((100vw - {{ settings.spacing_grid_horizontal }}px) / 2){% else %}calc(({{ settings.page_width }}px - 20px) / 2){% endif %},(min-width: 1025px) calc((100vw - 140px) / 2),(min-width: 577px) calc((100vw - 40px - {{ settings.spacing_grid_horizontal }}px) / 2),calc((100vw - 40px - {{ settings.spacing_grid_horizontal }}px) / 2)
@@ -88,18 +138,18 @@
           onload: animate_image_show
       }}
       {%- else -%}
-      {%- assign imagesize = block.settings.image.width | append: 'x' -%}
+      {%- assign imagesize = main_image_source.width | append: 'x' -%}
       {%- assign imagesize_mobile = block.settings.image_mobile.width | append: 'x' -%}
       <picture>
         {%- if section.settings.design_type == "image-banner__default" -%}
         <source srcset="{{ block.settings.image_mobile | img_url: imagesize_mobile }} 1x, {{ block.settings.image_mobile | img_url: imagesize_mobile, scale: 2 }} 2x" media="(max-width: 1024px) and (min-width: 534px)">
         <source srcset="{{ block.settings.image_mobile | image_url: width: 533 }}" media="(max-width: 533px)">
-        <source srcset="{{ block.settings.image | img_url: imagesize }} 1x, {{ block.settings.image | img_url: imagesize, scale: 2 }} 2x" media="(min-width: 1025px)">
+        <source srcset="{{ main_image_source | img_url: imagesize }} 1x, {{ main_image_source | img_url: imagesize, scale: 2 }} 2x" media="(min-width: 1025px)">
         {%- else -%}
         <source srcset="{{ block.settings.image_mobile | image_url: width: 576 }}" media="(max-width: 576px)">
-        <source srcset="{{ block.settings.image | img_url: imagesize }} 1x, {{ block.settings.image | img_url: imagesize, scale: 2 }} 2x" media="(min-width: 577px)">
+        <source srcset="{{ main_image_source | img_url: imagesize }} 1x, {{ main_image_source | img_url: imagesize, scale: 2 }} 2x" media="(min-width: 577px)">
         {%- endif -%}
-        {%- assign image = block.settings.image -%}
+        {%- assign image = main_image_source -%}
         {%- capture image_class -%}{% if settings.animate_image_show %}image-show--fadein{% endif %}{%- endcapture -%}
         {%- capture animate_image_show -%}{% if settings.animate_image_show %}this.classList.add('image-loaded');{% endif %}{%- endcapture -%}              
         {{
@@ -114,7 +164,9 @@
         }}
       </picture>
       {%- endif -%}
+      {{ videohtml }}
     </div>
+    {{ videobuttonhtml }}
   </div>
   {%- endif -%}
 
@@ -129,9 +181,6 @@
   -%}
 
   {%- capture banner_content -%}
-  <div>
-  </div>
-  <div>
   {%- if block.settings.subheading != blank -%}<div class="h5 image-banner__subheading">{{ block.settings.subheading }}</div>{%- endif -%}
   {%- if block.settings.heading != blank -%}
   {%- assign heading_tag = block.settings.heading_tag -%}
@@ -150,7 +199,6 @@
     {{ block.settings.description }}
   </p>
   {%- endif -%}
-  </div>
   {%- if block.settings.call_to_action == "buttons" -%}
   {%- if block.settings.button_primary_name != blank or block.settings.button_secondary_name != blank -%}
   <div class="image-banner__buttons mt20">

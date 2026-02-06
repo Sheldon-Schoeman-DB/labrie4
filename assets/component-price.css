@@ -3,7 +3,7 @@
 }
 .price__main-color{
   color: var(--color-price);
-}
+} 
 .price__regular{
   text-decoration-line: line-through;
 }
@@ -14,12 +14,9 @@
   display: inline-flex;
   margin-top: 3px;
 }
-.price__container{
-  display: flex;
-  align-items: flex-end;
+.unit-price{
+  color: var(--color-base);
 }
-.price__container .unit-price{
-  position: relative;
-  bottom: 1px;
-  margin-left: 10px;
+.product-page-section .unit-price{
+  margin-top:5px;
 }

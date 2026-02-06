@@ -28,6 +28,11 @@ capture icon_code
 render "icons-list-electronics-big", icon_name:icon_name
 endcapture
 endif
+if icon_code == blank
+capture icon_code
+render "icons-list-handy-man", icon_name:icon_name
+endcapture
+endif
 endif
 echo icon_code
 endcapture

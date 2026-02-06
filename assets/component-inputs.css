@@ -94,7 +94,7 @@ button.field__input{
   transition: color var(--duration-medium) ease, top .1s ease,font-size .1s ease, transform .1s ease;
   z-index: 1;
 }
-.search--small{width: 224px;}
+.search--small{width: 260px;}
 .field-with-icon .field__input{padding-left: 45px;}
 .field-with-icon .field__label{left: 45px;}
 .field__input:hover ~ .field__label,
@@ -336,5 +336,17 @@ input[type=number] {
 @media (max-width: 1024px){
   .newsletter-terms{
     margin-top: 15px;
+  }
+}
+.field__form-with-button {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+}
+@media (max-width: 576px){
+  .field__form-with-button.button-down-sp{
+    flex-direction: column;
   }
 }

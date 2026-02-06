@@ -9,10 +9,13 @@
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 
     {%- if settings.favicon != blank -%}
-      <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
 
     {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
+      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    {%- endunless -%}
+    {%- unless settings.type_header_font2.system? and settings.type_body_font.system? -%}
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
@@ -59,6 +62,7 @@
       {{ body_font_italic | font_face: font_display: 'swap' }}
       {{ body_font_bold_italic | font_face: font_display: 'swap' }}
       {{ settings.type_header_font | font_face: font_display: 'swap' }}
+      {{ settings.type_header_font2 | font_face: font_display: 'swap' }}
     
       :root {
     	--duration-short: .2s;
@@ -81,14 +85,18 @@
         --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
         --font-heading-style: {{ settings.type_header_font.style }};
         --font-heading-weight: {{ settings.type_header_font.weight }};
+        --font-heading-family-2: {{ settings.type_header_font2.family }}, {{ settings.type_header_font2.fallback_families }};
+        --font-heading-style-2: {{ settings.type_header_font2.style }};
+        --font-heading-weight-2: {{ settings.type_header_font2.weight }};
     
         --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
         --font-body-style: {{ settings.type_body_font.style }};
         --font-body-weight: {{ settings.type_body_font.weight }};
-    	--font-body-bold-weight: {{ body_font_bold_weight }};
-    	--font-button-weight: {% if settings.buttons_font_weight == 'strong' %}{{ body_font_bold_weight }}{% else %}{{ settings.type_body_font.weight }}{% endif %};
+        --font-body-bold-weight: {{ body_font_bold_weight }};
+        --font-button-weight: {% if settings.buttons_font_weight == 'strong' %}{{ body_font_bold_weight }}{% else %}{{ settings.type_body_font.weight }}{% endif %};
     
-    	--font-heading-scale: {{ settings.heading_scale | divided_by: 100.0 }};
+    	  --font-heading-scale: {{ settings.heading_scale | divided_by: 100.0 }};
+        --font-heading-scale-2: {{ settings.heading_scale2 | divided_by: 100.0 }};
         --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
     
         --font-body-size: calc(16px * var(--font-body-scale));
@@ -104,14 +112,14 @@
         --color-secondary-background: {{ settings.color_secondary_background }};
       	--color-section-background: var(--color-secondary-background);
 
-    	{%- comment -%}
-    	--color-simple-dropdown = menu submenu, search dropdown, sticky add to cart, sticky filters
-    	{%- endcomment -%}
-    	--color-simple-dropdown: {{ settings.color_background | color_lighten: 15 }};
-    	--color-vertical-menu-dropdown: {{ settings.color_background | color_lighten: 10 }};
+        {%- comment -%}
+        --color-simple-dropdown = menu submenu, search dropdown, sticky add to cart, sticky filters
+        {%- endcomment -%}
+        --color-simple-dropdown: {{ settings.color_background | color_lighten: 15 }};
+        --color-vertical-menu-dropdown: {{ settings.color_background | color_lighten: 10 }};
 
         --color-base:{{ settings.color_base }};
-    	--color-base-rgb: {{ settings.color_base.red }}, {{ settings.color_base.green }}, {{ settings.color_base.blue }};
+    	  --color-base-rgb: {{ settings.color_base.red }}, {{ settings.color_base.green }}, {{ settings.color_base.blue }};
         --color-accent:{{ settings.color_accent }};
         --color-subheading: var(--color-accent);
         --color-text-link:{{ settings.color_text_link }};
@@ -124,10 +132,11 @@
         --color-input-background-active: var(--color-body-background);
         --opacity-icons: {{ settings.icon_opacity | divided_by: 100.00 }};
 
-    	--mobile-focus-color: {{ settings.color_base | color_modify: 'alpha', 0.04 }};
+    	  --mobile-focus-color: {{ settings.color_base | color_modify: 'alpha', 0.04 }};
 
-    	--shadow: 0px 4px 20px rgba(22, 19, 69, 0.13);
-
+    	  --shadow: 0px 4px 20px rgba(22, 19, 69, 0.13);
+        --card-price-size: calc({{ settings.price_size }}px * var(--font-heading-scale));
+  
     	{%- assign accent_brightness = settings.color_base | color_extract: 'lightness' -%}
     	--auto-text-color-button-light:#ffffff;
     	--auto-text-color-button-dark:{%- if accent_brightness < 50 -%}var(--color-base){% else %}#000000{% endif %};
@@ -357,6 +366,9 @@
     {%- unless settings.type_header_font.system? -%}
       <link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
     {%- endunless -%}
+    {%- unless settings.type_header_font2.system? -%}
+      <link rel="preload" as="font" href="{{ settings.type_header_font2 | font_url }}" type="font/woff2" crossorigin>
+    {%- endunless -%}
 
     {%- if settings.predictive_search_enabled -%}
       <link rel="stylesheet" href="{{ 'component-predictive-search.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -372,6 +384,15 @@
         setTimeout(function(){document.querySelector('footer').classList.add('footer-loaded')}, 700);
       });
     </script>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "@theme/module-count-up": "{{ 'module-count-up.js' | asset_url }}",
+          "@theme/countUp": "{{ 'countUp.min.js' | asset_url }}"
+        }
+      }
+    </script>
   </head>
 
   <body>
@@ -380,7 +401,7 @@
     </a>    
 
     {%- if settings.cart_type == 'drawer' and template.name != 'cart' -%}
-      {%- render 'cart-drawer' -%}
+      {%- section 'cart-drawer' -%}
     {%- endif -%}
     
     {%- if request.design_mode -%}
@@ -461,9 +482,8 @@
       <recently-viewed-products-record data-count="{{ settings.recently_viewed_products_limit }}"></recently-viewed-products-record>
       <script src="{{ 'component-recently-viewed-products.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-
-    {% render 'road-closed-popup' %}
-    {% comment %} {% render 'christmas-popup' %} {% endcomment %}
-    {% comment %} {% render 'promo-popup' %} {% endcomment %}
+    {%- if settings.show_add_discount_code -%}
+    <script src="{{ 'cart-discount.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
   </body>
 </html>
